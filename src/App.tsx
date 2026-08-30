@@ -53,7 +53,7 @@ export default function App() {
       `}</style>
 
       {/* Top Linear-like Segmented Control */}
-      {active !== 6 && (
+      {active < 5 && (
       <div className="sticky top-0 z-50 backdrop-blur-xl bg-[#FCFCF9]/80 border-b border-[#E7E5E4]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[64px] flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ export default function App() {
       </div>
       )}
 
-      <main className={active === 6 ? "" : "max-w-[1200px] mx-auto"}>
+      <main className={active === 6 || active === 5 ? "" : "max-w-[1200px] mx-auto"}>
         {active===0 && <Flow1 setActive={setActive} />}
         {active===1 && <Flow2 setActive={setActive} showPass={showPass} setShowPass={setShowPass} />}
         {active===2 && <Flow3 roleTab={roleTab} setRoleTab={setRoleTab} instQuery={instQuery} setInstQuery={setInstQuery} selectedInst={selectedInst} setSelectedInst={setSelectedInst} institutions={institutions} instRef={instRef} showPass={showPass} setShowPass={setShowPass} />}
@@ -543,21 +543,21 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="bg-[#E9E2D3] min-h-[calc(100vh-80px)] flex items-center justify-center p-3 sm:p-6 md:p-10 font-sans selection:bg-[#EE930D]/20">
-      <main className="w-full max-w-[1400px] bg-white rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-[0_40px_100px_-30px_rgba(28,23,22,0.35)] flex flex-col-reverse md:grid md:grid-cols-2">
+    <div className="bg-[#E9E2D3] h-[calc(100dvh-64px)] w-full flex items-center justify-center p-2 sm:p-3 md:p-6 lg:p-6 font-sans selection:bg-[#EE930D]/20">
+      <main className="w-full max-w-[1400px] h-full bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_40px_100px_-30px_rgba(28,23,22,0.35)] flex flex-col-reverse md:grid md:grid-cols-2">
 
         {/* ================= LEFT PANEL ================= */}
-        <section className="relative bg-[#F2E8DB] flex flex-col px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
+        <section className="relative bg-[#F2E8DB] flex flex-col px-6 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-6 h-full justify-between">
 
           {/* Logo */}
           <div className="flex items-center gap-2.5">
             <span className="text-3xl leading-none" aria-hidden="true">🎓</span>
-            <span className="font-serif font-semibold text-2xl sm:text-3xl text-[#1C1716] tracking-tight">EduFeedback Pro</span>
+            <span className="font-serif font-semibold text-xl sm:text-2xl text-[#1C1716] tracking-tight">EduFeedback Pro</span>
           </div>
 
           {/* Illustration (hand-drawn cap + books, traced to vector) */}
-          <div className="flex-1 flex items-center justify-center py-6 md:py-8 min-h-[220px]">
-            <svg viewBox="0 0 790 590" className="w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[330px] h-auto" aria-hidden="true">
+          <div className="flex-1 flex items-center justify-center min-h-0 py-2 sm:py-4">
+            <svg viewBox="0 0 790 590" className="w-full max-w-[160px] sm:max-w-[180px] lg:max-w-[220px] max-h-full object-contain h-auto" aria-hidden="true">
               <g transform="translate(0.000000,590.000000) scale(0.100000,-0.100000)" fill="#4A3524" stroke="none">
                 <path d="M4551 5644 c0 -11 3 -14 6 -6 3 7 2 16 -1 19 -3 4 -6 -2 -5 -13z"/>
                 <path d="M4380 4970 c0 -5 11 -10 25 -10 14 0 25 5 25 10 0 6 -11 10 -25 10 -14 0 -25 -4 -25 -10z"/>
@@ -681,14 +681,14 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
           </div>
 
           {/* Tagline */}
-          <p className="font-serif italic text-3xl sm:text-4xl text-[#1C1716] leading-tight mb-7 sm:mb-8" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
+          <p className="font-serif italic text-2xl sm:text-3xl text-[#1C1716] leading-tight mb-3 sm:mb-4" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
             College-wide feedback, with trust.
           </p>
 
           {/* Feature cards */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-3.5 sm:p-5 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2.5 sm:mb-3 rounded-full bg-[#EE930D] flex items-center justify-center">
+            <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-2 sm:p-3 text-center">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1 text-xs sm:text-sm sm:mb-1 text-xs sm:text-sm.5 rounded-full bg-[#EE930D] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
                   <path d="M12 3.2 4.5 6v6.2c0 5 3.3 7.8 7.5 9.6 4.2-1.8 7.5-4.6 7.5-9.6V6L12 3.2Z"/>
                   <path d="m8.7 12.3 2.2 2.2 4.4-4.6"/>
@@ -699,7 +699,7 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </div>
 
             <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-3.5 sm:p-5 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2.5 sm:mb-3 rounded-full bg-[#A2B396] flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-1 text-xs sm:text-sm.5 sm:mb-3 rounded-full bg-[#A2B396] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
                   <path d="M3 21h18"/>
                   <path d="M4 21V9.5"/>
@@ -715,7 +715,7 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </div>
 
             <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-3.5 sm:p-5 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2.5 sm:mb-3 rounded-full bg-[#69A0BC] flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-1 text-xs sm:text-sm.5 sm:mb-3 rounded-full bg-[#69A0BC] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
                   <path d="M14.5 4h3A2.5 2.5 0 0 1 20 6.5v4A2.5 2.5 0 0 1 17.5 13H16l-2 2v-2h-.5A2.5 2.5 0 0 1 11 10.5v-4A2.5 2.5 0 0 1 13.5 4Z"/>
                   <path d="M9.5 9c-3 .3-5 2-5 4.6a4.3 4.3 0 0 0 1.2 3L5 19l2.8-1a5 5 0 0 0 1.8.4"/>
@@ -728,11 +728,11 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </div>
           </div>
 
-          <p className="text-xs text-[#1C1716]/50 mt-auto">Secure College SSO &middot; VTU &middot; Karnataka</p>
+          <p className="text-xs text-[#1C1716]/50 mt-auto pt-3">Secure College SSO &middot; VTU &middot; Karnataka</p>
         </section>
 
         {/* ================= RIGHT PANEL ================= */}
-        <section className="relative bg-white flex flex-col px-6 py-8 sm:px-10 sm:py-10 lg:px-16 lg:py-12">
+        <section className="relative bg-white flex flex-col px-6 py-4 sm:px-8 sm:py-6 lg:px-12 lg:py-6 h-full flex flex-col justify-between">
           
           <div className="flex justify-end">
             <button type="button" onClick={() => setActive(0)} className="inline-flex items-center gap-2 bg-[#EE930D] text-[#1C1716] font-medium text-sm pl-4 pr-1.5 py-1.5 rounded-full hover:brightness-95 active:brightness-90 transition">
@@ -747,16 +747,16 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </button>
           </div>
 
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-[64px] text-[#1C1716] leading-[1.05] mt-6 sm:mt-8" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Student Login</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#1C1716] leading-[1.05] mt-2 sm:mt-3" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Student Login</h1>
 
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed mt-4 max-w-md">
+          <p className="text-gray-500 text-base sm:text-lg leading-relaxed mt-2 max-w-md">
             Access attendance, marks, and give anonymous feedback. Your USN is your identity.
           </p>
 
-          <form onSubmit={(e) => { e.preventDefault(); setActive(5); }} className="mt-8 space-y-5 flex-1" noValidate>
+          <form onSubmit={(e) => { e.preventDefault(); setActive(5); }} className="mt-4 space-y-4 flex-1" noValidate>
             <div>
-              <label htmlFor="usn" className="block text-sm font-semibold text-[#1C1716] mb-2">University / USN</label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-4 py-3.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
+              <label htmlFor="usn" className="block text-sm font-semibold text-[#1C1716] mb-1 text-xs sm:text-sm">University / USN</label>
+              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 shrink-0 text-[#1C1716]/60" aria-hidden="true">
                   <path d="M3 21h18"/>
                   <path d="M4 21V9.5"/>
@@ -772,8 +772,8 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm mb-2"><span className="font-semibold text-[#1C1716]">Student Email</span> <span className="text-gray-400">(optional)</span></label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-4 py-3.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
+              <label htmlFor="email" className="block text-sm mb-1 text-xs sm:text-sm"><span className="font-semibold text-[#1C1716]">Student Email</span> <span className="text-gray-400">(optional)</span></label>
+              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 shrink-0 text-[#1C1716]/60" aria-hidden="true">
                   <rect x="3" y="5.5" width="18" height="13" rx="2.2"/>
                   <path d="m3.5 7 8.5 6 8.5-6"/>
@@ -784,8 +784,8 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </div>
 
             <div>
-              <label htmlFor="pw" className="block text-sm font-semibold text-[#1C1716] mb-2">Password</label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E9D2A0] bg-white px-4 py-3.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
+              <label htmlFor="pw" className="block text-sm font-semibold text-[#1C1716] mb-1 text-xs sm:text-sm">Password</label>
+              <div className="flex items-center gap-3 rounded-xl border border-[#E9D2A0] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
                 <input id="pw" name="password" type={showPassword ? 'text' : 'password'} defaultValue="1234" required
                   className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1716] tracking-[0.4em]" />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="shrink-0 text-xs font-medium text-[#1C1716]/70 border border-[#E6DFD1] rounded-lg px-3 py-1.5 hover:bg-[#F3EEE3] transition-colors">
@@ -806,7 +806,7 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
               <a href="#" className="underline underline-offset-2 text-[#1C1716] hover:text-[#EE930D] transition-colors">Forgot password?</a>
             </div>
 
-            <button type="submit" className="w-full bg-[#1C1716] hover:bg-black text-white font-medium text-base sm:text-lg rounded-xl py-4 flex items-center justify-center gap-2 transition-colors mt-2">
+            <button type="submit" className="w-full bg-[#1C1716] hover:bg-black text-white font-medium text-base sm:text-lg rounded-xl py-2 sm:py-2.5 flex items-center justify-center gap-2 transition-colors mt-2">
               Continue to Student Dashboard
               <span aria-hidden="true">→</span>
             </button>
@@ -816,7 +816,7 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             Need help? &middot; <a href="#" className="underline underline-offset-2 text-[#1C1716] hover:text-[#EE930D] transition-colors">Contact HOD</a>
           </p>
 
-          <p className="text-xs text-gray-400 mt-auto pt-8 text-center sm:text-right">
+          <p className="text-xs text-gray-400 mt-auto pt-3 text-center sm:text-right">
             Secured with 2FA &middot; <a href="#" className="underline hover:text-[#1C1716] transition-colors">Privacy Policy</a> &middot; <a href="#" className="underline hover:text-[#1C1716] transition-colors">Terms</a>
           </p>
         </section>
@@ -824,7 +824,6 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
     </div>
   );
 }
-
 
 function Flow4({ setActive }: any) {
   const [studentTab, setStudentTab] = useState('Overview');
@@ -842,7 +841,32 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
 
   
   return (
-    <div className="border-x border-b border-[#E7E5E4] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6 bg-white dark:bg-[#18181b] flex flex-col h-[calc(100vh-64px-32px)] ">
+    <div className="min-h-screen bg-[#F5F1E8] font-sans selection:bg-[#D97706]/20 flex flex-col pb-4">
+      {/* Top Navbar */}
+      <div className="h-[80px] flex items-center justify-between px-4 sm:px-8 shrink-0 z-50 sticky top-0 bg-[#F5F1E8]/80 backdrop-blur-xl border-b border-transparent">
+        <div className="flex items-center gap-3">
+          <img src={logoUrl} alt="Logo" className="w-10 h-10 object-contain" />
+          <div>
+            <div className="serif text-[16px] font-bold text-[#1C1917] leading-tight hidden sm:block">EduFeedback Pro</div>
+            <div className="text-[9px] font-bold text-[#A8A29E] tracking-widest hidden sm:flex items-center gap-1.5 mt-0.5 uppercase">
+              <span>EPCET</span>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="mono text-[10px] px-2 py-0.5 rounded-full bg-white border border-[#E7E5E4] text-[#78716C] hidden sm:inline-flex items-center gap-1 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" /> Live
+          </span>
+          <button 
+            onClick={() => setActive(0)} 
+            className="px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#DC2626] bg-white hover:bg-[#FEF2F2] transition-colors border border-[#FECACA] shadow-sm"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+      
+      <div className="border border-[#E7E5E4] rounded-[16px] overflow-hidden mx-4 sm:mx-8 bg-white dark:bg-[#18181b] flex flex-col flex-1 shadow-sm h-[calc(100vh-100px)]">
       
       {/* Header (Top Sub-navbar) */}
       <div className="h-[56px] bg-white dark:bg-[#18181b] border-b border-[#E7E5E4] flex items-center justify-between px-4 sm:px-6 shrink-0">
@@ -1138,6 +1162,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
 
         </div>
       </div>
+    </div>
     </div>
   );
 }
