@@ -1,3 +1,4 @@
+import { Users, GraduationCap, BarChart2, Link2, LineChart, Star, ShieldCheck } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import logoUrl from './logo.png';
 
