@@ -544,7 +544,7 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
 
   return (
     <div className="bg-[#E9E2D3] min-h-[calc(100vh-80px)] flex items-center justify-center p-3 sm:p-6 md:p-10 font-sans selection:bg-[#EE930D]/20">
-      <main className="w-full max-w-[1400px] bg-white rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-[0_40px_100px_-30px_rgba(28,23,22,0.35)] grid grid-cols-1 md:grid-cols-2">
+      <main className="w-full max-w-[1400px] bg-white rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-[0_40px_100px_-30px_rgba(28,23,22,0.35)] flex flex-col-reverse md:grid md:grid-cols-2">
 
         {/* ================= LEFT PANEL ================= */}
         <section className="relative bg-[#F2E8DB] flex flex-col px-6 py-8 sm:px-10 sm:py-10 lg:px-14 lg:py-12">
