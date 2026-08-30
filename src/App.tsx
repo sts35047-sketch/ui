@@ -41,7 +41,7 @@ export default function App() {
   const institutions = ["East Point College of Engineering and Technology", "RVCE Bangalore", "PES University", "MSRIT", "EPCET Evening"];
 
   return (
-    <div className="min-h-screen bg-[#FCFCF9] text-[#1C1917] antialiased selection:bg-[#DAA520]/20">
+    <div className="min-h-screen bg-[#FCFCF9] dark:bg-[#09090b] text-[#1C1917] dark:text-[#F5F5F0] antialiased selection:bg-[#DAA520]/20">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,ital,wght@6..72,0,400;6..72,1,400;6..72,0,500;6..72,0,600;6..72,1,600&display=swap');
         *{font-family:"Geist",ui-sans-system,sans-serif}
@@ -54,7 +54,7 @@ export default function App() {
 
       {/* Top Linear-like Segmented Control */}
       {active < 5 && (
-      <div className="sticky top-0 z-50 backdrop-blur-xl bg-[#FCFCF9]/80 border-b border-[#E7E5E4]">
+      <div className="sticky top-0 z-50 backdrop-blur-xl bg-[#FCFCF9]/80 dark:bg-[#09090b]/80 border-b border-[#E7E5E4] dark:border-[#27272a] dark:border-[#27272a]">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[64px] flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={logoUrl} alt="Logo" className="w-10 h-10 object-contain" />
@@ -64,13 +64,11 @@ export default function App() {
                 <span>&lt;</span> BACK
               </button>
             )}
-            <span className="mono text-[10px] px-2 py-0.5 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] text-[#78716C] hidden sm:inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" /> Live
-            </span>
+            
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="inline-flex p-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] shadow-[0_1px_0_0_white_inset]">
+            <div className="inline-flex p-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] shadow-[0_1px_0_0_white_inset]">
               {tabs.map((t, i) => (
                 <button
                   key={t}
@@ -84,14 +82,22 @@ export default function App() {
           </div>
 
           <div className="hidden md:flex items-center gap-4 text-[13px]">
-            <span className="text-[#78716C] hover:text-[#1C1917] cursor-pointer">Help</span>
-            <span className="inline-flex items-center gap-1.5 mono text-[11px]"><span className="w-2 h-2 rounded-full bg-[#059669]" /> Operational</span>
+            
+            <button onClick={() => setDarkMode(!darkMode)} className="text-[#78716C] hover:text-[#1C1917] dark:hover:text-white transition-colors flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle Dark Mode">
+              {darkMode ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              )}
+            </button>
+            <span className="text-[#78716C] hover:text-[#1C1917] dark:text-[#A8A29E] dark:hover:text-white cursor-pointer">Help</span>
+            
           </div>
         </div>
       </div>
       )}
 
-      <main className={active === 6 || active === 5 ? "" : "max-w-[1200px] mx-auto"}>
+      <main className={active === 6 || active === 5 || active === 3 ? "" : "max-w-[1200px] mx-auto"}>
         {active===0 && <Flow1 setActive={setActive} />}
         {active===1 && <Flow2 setActive={setActive} showPass={showPass} setShowPass={setShowPass} />}
         {active===2 && <Flow3 roleTab={roleTab} setRoleTab={setRoleTab} instQuery={instQuery} setInstQuery={setInstQuery} selectedInst={selectedInst} setSelectedInst={setSelectedInst} institutions={institutions} instRef={instRef} showPass={showPass} setShowPass={setShowPass} />}
@@ -116,7 +122,7 @@ function Flow1({ setActive }: { setActive:(n:number)=>void }) {
   return (
     <div className="px-6 sm:px-10 pt-8 sm:pt-12 pb-8">
       <div className="flex justify-center mb-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] text-[12px]">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] text-[12px]">
           <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
           <span className="mono">✦ New — NAAC 2024 compliance report added</span>
         </div>
@@ -130,7 +136,7 @@ function Flow1({ setActive }: { setActive:(n:number)=>void }) {
       </p>
 
       <div className="max-w-[680px] mx-auto mt-10">
-        <div className="rounded-[16px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] overflow-hidden">
+        <div className="rounded-[16px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] overflow-hidden">
           {roles.map((r, idx) => (
             <button key={r.title} onClick={()=>setActive(r.action)} className="group w-full flex items-center gap-4 px-5 py-5 text-left hover:bg-[#F5F5F4] border-b last:border-b-0 border-[#F5F5F4] transition-colors">
               <div className="w-12 h-12 rounded-[12px] flex items-center justify-center text-[20px] shrink-0" style={{background:r.bg}}>{r.icon}</div>
@@ -160,7 +166,7 @@ function Flow1({ setActive }: { setActive:(n:number)=>void }) {
             </div>
             <span className="ml-3 text-[12px] text-[#78716C]">Trusted by CSE, ECE, ME departments across Karnataka</span>
           </div>
-          <div className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] mono text-[10px]">
+          <div className="hidden sm:inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] mono text-[10px]">
             <span className="w-5 h-5 rounded-full bg-[#1C1917] text-white flex items-center justify-center">N</span> NAAC A++ verified
           </div>
         </div>
@@ -171,10 +177,10 @@ function Flow1({ setActive }: { setActive:(n:number)=>void }) {
 
 function Flow2({ setActive, showPass, setShowPass }: any) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]  border-x border-b border-[#E7E5E4] bg-white dark:bg-[#18181b] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6">
-      <div className="bg-[#FEF3C7] p-8 sm:p-10 relative overflow-hidden">
+    <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]  border-x border-b border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6">
+      <div className="bg-[#FEF3C7] dark:bg-[#78350F]/20 p-8 sm:p-10 relative overflow-hidden">
         <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] mono text-[10px]">COLLEGE OS • SECURE</div>
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] mono text-[10px]">COLLEGE OS • SECURE</div>
           <h2 className="serif text-[28px] leading-[1.1] tracking-tight mt-6">Run your institution from one place.</h2>
           <div className="mt-6 space-y-4">
             {[
@@ -184,7 +190,7 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
               { t:"Export NAAC reports", d:"One-click compliance PDFs — 2024 format", i:"⧉" },
             ].map(b=>(
               <div key={b.t} className="flex gap-3">
-                <div className="w-8 h-8 rounded-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] flex items-center justify-center text-[14px]">{b.i}</div>
+                <div className="w-8 h-8 rounded-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-center text-[14px]">{b.i}</div>
                 <div><div className="text-[13px] font-semibold">{b.t}</div><div className="text-[12px] text-[#78716C] leading-5">{b.d}</div></div>
               </div>
             ))}
@@ -199,7 +205,7 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
             <rect x="68" y="75" width="14" height="18" rx="3" fill="none" stroke="#78716C" strokeWidth="1"/>
             <rect x="38" y="105" width="44" height="22" rx="6" fill="white" stroke="#E7E5E4"/>
           </svg>
-          <div className="absolute left-6 top-6 rotate-[-3deg] bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded-[12px] px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+          <div className="absolute left-6 top-6 rotate-[-3deg] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
             <div className="mono text-[10px] text-[#A8A29E]">FEEDBACK</div>
             <div className="text-[16px] font-semibold leading-none mt-1">12.8k</div>
             <div className="text-[11px] text-[#059669] mt-1">↑ 12% this sem</div>
@@ -223,7 +229,7 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
             <div>
               <label className="text-[13px] font-medium">Work email</label>
               <div className="mt-2 relative">
-                <input placeholder="principal@bmsce.ac.in" className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5 transition-all" />
+                <input placeholder="principal@bmsce.ac.in" className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5 transition-all" />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-[#A8A29E] mono">.edu</span>
               </div>
             </div>
@@ -232,7 +238,7 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
                 <label className="text-[13px] font-medium">Password</label>
                 <button onClick={()=>setShowPass(!showPass)} className="text-[12px] text-[#78716C] hover:text-[#1C1917]">{showPass ? "Hide" : "Show"}</button>
               </div>
-              <input type={showPass ? "text" : "password"} placeholder="••••••••" className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
+              <input type={showPass ? "text" : "password"} placeholder="••••••••" className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
               <div className="mt-2 mono text-[11px] text-[#059669]">✓ 12 characters • Encrypted</div>
             </div>
 
@@ -249,11 +255,11 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
             <div className="flex items-center justify-between text-[13px]">
               <a className="text-[#78716C] hover:text-[#1C1917] underline underline-offset-4">Having trouble? Contact Super Admin</a>
             </div>
-            <button className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] text-[13px] font-medium inline-flex items-center justify-center gap-2 hover:bg-[#F5F5F0]">
+            <button className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] text-[13px] font-medium inline-flex items-center justify-center gap-2 hover:bg-[#F5F5F0]">
               Register your institution <span className="text-[#F59E0B]">↗</span>
             </button>
 
-            <div className="mt-8 flex items-center gap-2 text-[11px] text-[#78716C] mono bg-[#F5F5F0] border border-[#E7E5E4] rounded-[12px] px-3 py-2.5">
+            <div className="mt-8 flex items-center gap-2 text-[11px] text-[#78716C] mono bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-3 py-2.5">
               <span>🔒</span> SOC 2 compliant • Encrypted • Audit logged
             </div>
           </div>
@@ -266,9 +272,9 @@ function Flow2({ setActive, showPass, setShowPass }: any) {
 function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, setSelectedInst, institutions, instRef, showPass, setShowPass }: any) {
   const filtered = institutions.filter((i:string)=> i.toLowerCase().includes(instQuery.toLowerCase()));
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]  border-x border-b border-[#E7E5E4] bg-white dark:bg-[#18181b] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[40%_60%]  border-x border-b border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6">
       <div className={`${roleTab === 'HOD' ? 'bg-[#FCE7F3]' : 'bg-[#DBEAFE]'} p-8 sm:p-10 transition-colors duration-300`}>
-        <div className="inline-flex gap-1.5 p-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4]">
+        <div className="inline-flex gap-1.5 p-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a]">
           <button onClick={()=>setRoleTab('HOD')} className={`h-7 px-3 rounded-full text-[12px] font-medium ${roleTab==='HOD' ? "bg-[#1C1917] text-white" : "text-[#78716C]"}`}>HOD</button>
           <button onClick={()=>setRoleTab('Faculty')} className={`h-7 px-3 rounded-full text-[12px] font-medium ${roleTab==='Faculty' ? "bg-[#1C1917] text-white" : "text-[#78716C]"}`}>Faculty</button>
         </div>
@@ -278,12 +284,12 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
             <h2 className="serif text-[26px] leading-[1.1] mt-6">Department oversight, without micromanaging.</h2>
             <p className="text-[13px] text-[#78716C] mt-3 leading-6">See real teaching quality, not vanity scores. Filter by subject, year, sentiment.</p>
             <div className="mt-6 grid grid-cols-3 gap-3">
-              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded-[12px] p-3">
+              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] p-3">
                 <div className="mono text-[10px] text-[#A8A29E]">FEEDBACK</div>
                 <div className="text-[18px] font-semibold mt-1">4,215</div>
                 <div className="text-[11px] text-[#059669]">↑ 8.2%</div>
               </div>
-              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded-[12px] p-3">
+              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] p-3">
                 <div className="mono text-[10px] text-[#A8A29E]">FACULTY</div>
                 <div className="text-[18px] font-semibold mt-1">28</div>
                 <div className="text-[11px] text-[#78716C]">active</div>
@@ -294,7 +300,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
                 <div className="text-[11px] opacity-70">on track</div>
               </div>
             </div>
-            <div className="mt-6 rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] p-3 flex items-center gap-3">
+            <div className="mt-6 rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] p-3 flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-[#F5F5F0] flex items-center justify-center">◧</div>
               <div className="text-[12px]"><span className="font-medium">CSE Department tree</span><div className="text-[#78716C] mono text-[11px]">Sections A • B • C • Labs</div></div>
             </div>
@@ -304,7 +310,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
             <h2 className="serif text-[26px] leading-[1.1] mt-6">Your teaching impact, clearly shown.</h2>
             <p className="text-[13px] text-[#78716C] mt-3 leading-6">Anonymous feedback. Verified attendance logs. No public shaming — just useful insights.</p>
             <div className="mt-6 grid grid-cols-2 gap-3">
-              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded-[12px] p-3">
+              <div className="bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] p-3">
                 <div className="mono text-[10px] text-[#A8A29E]">ATTENDANCE</div>
                 <div className="text-[20px] font-semibold mt-1">98.4%</div>
                 <div className="text-[11px] text-[#059669]">verified logs</div>
@@ -315,7 +321,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
                 <div className="text-[11px] opacity-70">since Aug</div>
               </div>
             </div>
-            <div className="mt-6 rounded-[12px] bg-white dark:bg-[#18181b] border border-dashed border-[#E7E5E4] p-4">
+            <div className="mt-6 rounded-[12px] bg-white dark:bg-[#18181b] border border-dashed border-[#E7E5E4] dark:border-[#27272a] p-4">
               <div className="text-[12px] font-medium">How students see you</div>
               <div className="mt-2 flex gap-1.5">
                 <span className="px-2 py-1 rounded-full bg-[#DCFCE7] text-[11px]">Clear explanations</span>
@@ -329,7 +335,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
 
       <div className="p-8 sm:p-12 flex justify-center">
         <div className="w-full max-w-[380px]">
-          <div className="inline-flex p-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4]">
+          <div className="inline-flex p-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a]">
             <button onClick={()=>setRoleTab('HOD')} className={`h-8 px-4 rounded-full text-[13px] font-medium transition ${roleTab==='HOD' ? "bg-[#1C1917] text-white" : "text-[#78716C]"}`}>HOD</button>
             <button onClick={()=>setRoleTab('Faculty')} className={`h-8 px-4 rounded-full text-[13px] font-medium transition ${roleTab==='Faculty' ? "bg-[#1C1917] text-white" : "text-[#78716C]"}`}>Faculty</button>
           </div>
@@ -342,9 +348,9 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
               <label className="text-[13px] font-medium">Your institution</label>
               <div className="mt-2 relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A8A29E]">🏛️</span>
-                <input value={selectedInst ? selectedInst : instQuery} onChange={e=>{setInstQuery(e.target.value); setSelectedInst('');}} placeholder="Search and select institution..." className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] pl-9 pr-3 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
+                <input value={selectedInst ? selectedInst : instQuery} onChange={e=>{setInstQuery(e.target.value); setSelectedInst('');}} placeholder="Search and select institution..." className="w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] pl-9 pr-3 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
                 {instQuery && filtered.length>0 && (
-                  <div className="absolute z-20 mt-2 w-full rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] shadow-[0_12px_24px_rgba(0,0,0,0.08)] overflow-hidden">
+                  <div className="absolute z-20 mt-2 w-full rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] shadow-[0_12px_24px_rgba(0,0,0,0.08)] overflow-hidden">
                     {filtered.map((f:string)=>(
                       <button key={f} onClick={()=>{setSelectedInst(f); setInstQuery('');}} className="w-full text-left px-3.5 py-2.5 text-[13px] hover:bg-[#F5F5F0]">{f}</button>
                     ))}
@@ -356,7 +362,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
             {roleTab==='Faculty' && (
               <div>
                 <label className="text-[13px] font-medium">Department</label>
-                <div className={`mt-2 h-[44px] rounded-[12px] border bg-white dark:bg-[#18181b] px-3.5 flex items-center text-[14px] ${selectedInst ? "border-[#E7E5E4] text-[#1C1917]" : "border-dashed border-[#E7E5E4] text-[#A8A29E] bg-[#FCFCF9]"}`}>
+                <div className={`mt-2 h-[44px] rounded-[12px] border bg-white dark:bg-[#18181b] px-3.5 flex items-center text-[14px] ${selectedInst ? "border-[#E7E5E4] dark:border-[#27272a] text-[#1C1917]" : "border-dashed border-[#E7E5E4] dark:border-[#27272a] text-[#A8A29E] bg-[#FCFCF9]"}`}>
                   {selectedInst ? (
                     <select className="w-full bg-transparent outline-none text-[14px]"><option>CSE — Computer Science</option><option>ECE</option><option>ME</option></select>
                   ) : "Select institution first..."}
@@ -366,7 +372,7 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
 
             <div>
               <label className="text-[13px] font-medium">{roleTab} email</label>
-              <input placeholder={roleTab==='HOD' ? "hod.cse@bmsce.ac.in" : "faculty@institution.edu"} className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
+              <input placeholder={roleTab==='HOD' ? "hod.cse@bmsce.ac.in" : "faculty@institution.edu"} className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
               <div className="mt-1.5 mono text-[11px] text-[#78716C]">We’ll send a magic link if password fails.</div>
             </div>
 
@@ -375,8 +381,8 @@ function Flow3({ roleTab, setRoleTab, instQuery, setInstQuery, selectedInst, set
                 <label className="text-[13px] font-medium">Password</label>
                 <button onClick={()=>setShowPass(!showPass)} className="text-[12px] text-[#78716C] hover:text-[#1C1917]">{showPass ? "Hide" : "Show"}</button>
               </div>
-              <input type={showPass ? "text" : "password"} placeholder="••••••••" className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
-              {roleTab==='HOD' && <div className="mt-2 text-[11px] text-[#F59E0B] bg-[#FFFBEB] border border-[#FDE68A] rounded-[8px] px-2.5 py-1.5">Hint: Use college SSO if enabled.</div>}
+              <input type={showPass ? "text" : "password"} placeholder="••••••••" className="mt-2 w-full h-[44px] rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] px-3.5 text-[14px] outline-none focus:border-[#1C1917] focus:ring-4 focus:ring-[#1C1917]/5" />
+              {roleTab==='HOD' && <div className="mt-2 text-[11px] text-[#F59E0B] bg-[#FFFBEB] border border-[#FDE68A] dark:border-[#92400E]/30 rounded-[8px] px-2.5 py-1.5">Hint: Use college SSO if enabled.</div>}
             </div>
 
             <button className="w-full h-[44px] rounded-[12px] bg-[#1C1917] text-white text-[14px] font-medium hover:bg-black transition-colors">
@@ -412,13 +418,13 @@ function SubjectFeedbackFlow() {
       {step > 1 && (
         <button 
           onClick={() => { setSem('Sem ' + s); setStep(2); }}
-          className="mb-6 bg-white dark:bg-[#18181b] border border-[#E7E5E4] px-4 py-2 rounded-full text-sm font-medium text-[#44403C] hover:bg-[#F5F5F0] flex items-center gap-2 transition-all shadow-sm"
+          className="mb-6 bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] px-4 py-2 rounded-full text-sm font-medium text-[#44403C] hover:bg-[#F5F5F0] flex items-center gap-2 transition-all shadow-sm"
         >
           <span>←</span> Previous Step
         </button>
       )}
 
-      <div className="bg-white dark:bg-[#18181b] rounded-3xl border border-[#E7E5E4] shadow-sm max-w-4xl mx-auto w-full p-12 flex flex-col items-center min-h-[400px]">
+      <div className="bg-white dark:bg-[#18181b] rounded-3xl border border-[#E7E5E4] dark:border-[#27272a] shadow-sm max-w-4xl mx-auto w-full p-12 flex flex-col items-center min-h-[400px]">
         
         {/* Stepper */}
         <div className="flex items-center gap-4 mb-10">
@@ -446,7 +452,7 @@ function SubjectFeedbackFlow() {
                   <div 
                     key={s} 
                     onClick={() => setSem('Sem ' + s)}
-                    className={"relative h-44 rounded-[20px] flex flex-col items-center justify-between p-4 cursor-pointer transition-all " + (isSelected ? 'bg-[#FEF3C7] border-2 border-[#F59E0B] shadow-sm' : 'bg-white dark:bg-[#18181b] border border-[#E7E5E4] hover:border-[#F59E0B]/50')}
+                    className={"relative h-44 rounded-[20px] flex flex-col items-center justify-between p-4 cursor-pointer transition-all " + (isSelected ? 'bg-[#FEF3C7] border-2 border-[#F59E0B] shadow-sm' : 'bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] hover:border-[#F59E0B]/50')}
                   >
                     {/* Top indicators */}
                     <div className="w-full flex justify-between items-center h-6">
@@ -465,7 +471,7 @@ function SubjectFeedbackFlow() {
                     
                     {/* Text */}
                     <div className="text-center">
-                      <div className="font-serif font-bold text-[#1C1917] text-[17px]">Sem {s}</div>
+                      <div className="serif font-bold text-[#1C1917] text-[17px]">Sem {s}</div>
                       <div className="mono text-[10px] text-[#A8A29E] mt-1 tracking-widest uppercase">CSE • {year}</div>
                     </div>
                     
@@ -478,7 +484,7 @@ function SubjectFeedbackFlow() {
               })}
             </div>
             
-            <div className="text-[13px] font-medium text-[#78716C] flex items-center gap-2 mb-8 bg-[#FCFCF9] border border-[#E7E5E4] px-5 py-2 rounded-full">
+            <div className="text-[13px] font-medium text-[#78716C] flex items-center gap-2 mb-8 bg-[#FCFCF9] border border-[#E7E5E4] dark:border-[#27272a] px-5 py-2 rounded-full">
               <span className="text-lg">💡</span> Tip: You can change semester later in Profile
             </div>
             
@@ -502,7 +508,7 @@ function SubjectFeedbackFlow() {
                 <div 
                   key={sub.code}
                   onClick={() => { setSubject(sub.name); setStep(3); }}
-                  className="p-5 rounded-2xl border border-[#E7E5E4] flex flex-col gap-3 cursor-pointer hover:border-[#4F46E5] hover:shadow-md transition-all bg-white dark:bg-[#18181b] hover:bg-[#F8F9FF]"
+                  className="p-5 rounded-2xl border border-[#E7E5E4] dark:border-[#27272a] flex flex-col gap-3 cursor-pointer hover:border-[#4F46E5] hover:shadow-md transition-all bg-white dark:bg-[#18181b] hover:bg-[#F8F9FF]"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-[#F5F5F0] text-[#4F46E5] flex items-center justify-center text-lg">
@@ -543,21 +549,33 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="bg-[#E9E2D3] h-[calc(100dvh-64px)] w-full flex items-center justify-center p-2 sm:p-3 md:p-6 lg:p-6 font-sans selection:bg-[#EE930D]/20">
-      <main className="w-full max-w-[1400px] h-full bg-white rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-[0_40px_100px_-30px_rgba(28,23,22,0.35)] flex flex-col-reverse md:grid md:grid-cols-2">
+    <div className="w-full h-[calc(100dvh-64px)] grid grid-cols-1 md:grid-cols-2 font-sans overflow-hidden">
+      
+      {/* LEFT PANEL */}
+      <div className="bg-[#D1FAE5] dark:bg-[#064E3B] dark:bg-[#064E3B] relative flex flex-col justify-center px-6 lg:px-16 py-10 h-full overflow-hidden">
+        {/* We can use a subtle noise texture if we want, but let's stick to clean bg for now */}
+        <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+        
+        <div className="relative z-10 w-full max-w-[500px] mx-auto flex flex-col h-full justify-between">
+          
+          <div className="mt-8">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-black/20 border border-white/50 dark:border-white/10 shadow-sm mb-6">
+              <span className="w-4 h-4 rounded-full bg-[#10B981] flex items-center justify-center text-white text-[10px]">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3 h-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <span className="text-[13px] font-semibold text-[#064E3B]">Student</span>
+            </div>
 
-        {/* ================= LEFT PANEL ================= */}
-        <section className="relative bg-[#F2E8DB] flex flex-col px-6 py-4 sm:px-8 sm:py-6 lg:px-10 lg:py-6 h-full justify-between">
-
-          {/* Logo */}
-          <div className="flex items-center gap-2.5">
-            <span className="text-3xl leading-none" aria-hidden="true">🎓</span>
-            <span className="font-serif font-semibold text-xl sm:text-2xl text-[#1C1716] tracking-tight">EduFeedback Pro</span>
+            <h1 className="serif text-[40px] lg:text-[48px] leading-[1.1] text-[#064E3B] dark:text-[#A7F3D0] mb-4">
+              Student access, without chaos.
+            </h1>
+            <p className="text-[15px] text-[#064E3B]/80 dark:text-[#A7F3D0]/80 dark:text-[#A7F3D0]/80 leading-relaxed max-w-[400px]">
+              Access attendance, marks, and give anonymous feedback. Your USN is your identity.
+            </p>
           </div>
 
-          {/* Illustration (hand-drawn cap + books, traced to vector) */}
-          <div className="flex-1 flex items-center justify-center min-h-0 py-2 sm:py-4">
-            <svg viewBox="0 0 790 590" className="w-full max-w-[160px] sm:max-w-[180px] lg:max-w-[220px] max-h-full object-contain h-auto" aria-hidden="true">
+          <div className="flex-1 flex items-center justify-center py-8">
+            <svg viewBox="0 0 790 590" className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[280px] short:lg:max-w-[220px] h-auto" aria-hidden="true">
               <g transform="translate(0.000000,590.000000) scale(0.100000,-0.100000)" fill="#4A3524" stroke="none">
                 <path d="M4551 5644 c0 -11 3 -14 6 -6 3 7 2 16 -1 19 -3 4 -6 -2 -5 -13z"/>
                 <path d="M4380 4970 c0 -5 11 -10 25 -10 14 0 25 5 25 10 0 6 -11 10 -25 10 -14 0 -25 -4 -25 -10z"/>
@@ -680,147 +698,112 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
             </svg>
           </div>
 
-          {/* Tagline */}
-          <p className="font-serif italic text-2xl sm:text-3xl text-[#1C1716] leading-tight mb-3 sm:mb-4" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-            College-wide feedback, with trust.
-          </p>
-
-          {/* Feature cards */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-2 sm:p-3 text-center">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-1 text-xs sm:text-sm sm:mb-1 text-xs sm:text-sm.5 rounded-full bg-[#EE930D] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
-                  <path d="M12 3.2 4.5 6v6.2c0 5 3.3 7.8 7.5 9.6 4.2-1.8 7.5-4.6 7.5-9.6V6L12 3.2Z"/>
-                  <path d="m8.7 12.3 2.2 2.2 4.4-4.6"/>
-                </svg>
+          <div className="grid grid-cols-3 gap-3 pb-8">
+            <div className="bg-white dark:bg-[#18181b] rounded-[16px] p-4 shadow-sm">
+              <div className="mono text-[10px] text-[#A8A29E] tracking-wider mb-1">USN</div>
+              <div className="text-[16px] font-bold text-[#1C1917] dark:text-[#F5F5F0] mb-1">1EP24CS001</div>
+              <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3 h-3"><path d="M20 6L9 17l-5-5"/></svg>
+                Verified
               </div>
-              <p className="font-serif font-semibold text-[#1C1716] text-xs sm:text-base leading-snug" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Secure College SSO</p>
-              <p className="text-[8px] sm:text-[11px] tracking-wider text-gray-400 uppercase mt-1">Single Sign-On</p>
             </div>
-
-            <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-3.5 sm:p-5 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-1 text-xs sm:text-sm.5 sm:mb-3 rounded-full bg-[#A2B396] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
-                  <path d="M3 21h18"/>
-                  <path d="M4 21V9.5"/>
-                  <path d="M20 21V9.5"/>
-                  <path d="M2.5 9.5 12 4l9.5 5.5"/>
-                  <path d="M8 21v-6.5"/>
-                  <path d="M12 21v-6.5"/>
-                  <path d="M16 21v-6.5"/>
-                </svg>
+            <div className="bg-white dark:bg-[#18181b] rounded-[16px] p-4 shadow-sm">
+              <div className="mono text-[10px] text-[#A8A29E] tracking-wider mb-1">ATTENDANCE</div>
+              <div className="text-[16px] font-bold text-[#1C1917] dark:text-[#F5F5F0] mb-1">78%</div>
+              <div className="text-[11px] font-medium text-[#10B981] flex items-center gap-1">
+                &uarr; 3.5% this month
               </div>
-              <p className="font-serif font-semibold text-[#1C1716] text-xs sm:text-base leading-snug" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>All Departments</p>
-              <p className="text-[8px] sm:text-[11px] tracking-wider text-gray-400 uppercase mt-1">All Years &middot; All Departments</p>
             </div>
-
-            <div className="bg-white rounded-2xl shadow-[0_10px_30px_-15px_rgba(28,23,22,0.25)] p-3.5 sm:p-5 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-1 text-xs sm:text-sm.5 sm:mb-3 rounded-full bg-[#69A0BC] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-7 sm:h-7" aria-hidden="true">
-                  <path d="M14.5 4h3A2.5 2.5 0 0 1 20 6.5v4A2.5 2.5 0 0 1 17.5 13H16l-2 2v-2h-.5A2.5 2.5 0 0 1 11 10.5v-4A2.5 2.5 0 0 1 13.5 4Z"/>
-                  <path d="M9.5 9c-3 .3-5 2-5 4.6a4.3 4.3 0 0 0 1.2 3L5 19l2.8-1a5 5 0 0 0 1.8.4"/>
-                  <circle cx="14" cy="8.4" r="0.5" fill="white" stroke="none"/>
-                  <circle cx="16" cy="8.4" r="0.5" fill="white" stroke="none"/>
-                </svg>
+            <div className="bg-white dark:bg-[#18181b] rounded-[16px] p-4 shadow-sm">
+              <div className="mono text-[10px] text-[#A8A29E] tracking-wider mb-1">MARKS</div>
+              <div className="text-[16px] font-bold text-[#1C1917] dark:text-[#F5F5F0] mb-1">8.2 CGPA</div>
+              <div className="text-[11px] font-medium text-[#78716C]">
+                3 subjects updated
               </div>
-              <p className="font-serif font-semibold text-[#1C1716] text-xs sm:text-base leading-snug" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Anonymous Feedback</p>
-              <p className="text-[8px] sm:text-[11px] tracking-wider text-gray-400 uppercase mt-1">Secure &middot; Confidential &middot; Private</p>
             </div>
           </div>
 
-          <p className="text-xs text-[#1C1716]/50 mt-auto pt-3">Secure College SSO &middot; VTU &middot; Karnataka</p>
-        </section>
+        </div>
+      </div>
 
-        {/* ================= RIGHT PANEL ================= */}
-        <section className="relative bg-white flex flex-col px-6 py-4 sm:px-8 sm:py-6 lg:px-12 lg:py-6 h-full flex flex-col justify-between">
-          
-          <div className="flex justify-end">
-            <button type="button" onClick={() => setActive(0)} className="inline-flex items-center gap-2 bg-[#EE930D] text-[#1C1716] font-medium text-sm pl-4 pr-1.5 py-1.5 rounded-full hover:brightness-95 active:brightness-90 transition">
-              Student Access
-              <span className="w-7 h-7 rounded-full bg-[#1C1716]/10 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
-                  <path d="M12 21.5s7-3.4 7-9V5.3L12 2.5l-7 2.8V12.5c0 5.6 7 9 7 9Z"/>
-                  <circle cx="12" cy="9.6" r="1.9"/>
-                  <path d="M8.8 14.8c0-1.7 1.4-2.6 3.2-2.6s3.2.9 3.2 2.6"/>
-                </svg>
-              </span>
+      {/* RIGHT PANEL */}
+      <div className="flex flex-col bg-white dark:bg-[#09090b] h-full relative overflow-y-auto">
+        <div style={{ zoom: 0.95 }} className="flex flex-col px-8 lg:px-20 py-16 w-full max-w-[640px] mx-auto h-full">
+          <div className="flex justify-end mb-8">
+            <button type="button" onClick={() => setActive(0)} className="inline-flex items-center gap-2 bg-[#F5F5F0] dark:bg-[#18181b] text-[#1C1917] dark:text-[#F5F5F0] font-medium text-[13px] px-3 py-1.5 rounded-full hover:bg-[#E7E5E4] transition-colors border border-[#E7E5E4] dark:border-[#27272a] dark:border-[#27272a]">
+              &lt; Back to Roles
             </button>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#1C1716] leading-[1.05] mt-2 sm:mt-3" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Student Login</h1>
+          <div className="flex-1 flex flex-col justify-center">
+            <h1 className="serif text-[42px] sm:text-[50px] text-[#1C1917] dark:text-[#F5F5F0] leading-tight mb-3">Student Access</h1>
+            <p className="text-[15px] sm:text-[16px] text-[#78716C] mb-10 max-w-[480px] leading-relaxed">
+              Access attendance, marks, and give anonymous feedback. Your USN is your identity.
+            </p>
 
-          <p className="text-gray-500 text-base sm:text-lg leading-relaxed mt-2 max-w-md">
-            Access attendance, marks, and give anonymous feedback. Your USN is your identity.
-          </p>
-
-          <form onSubmit={(e) => { e.preventDefault(); setActive(5); }} className="mt-4 space-y-4 flex-1" noValidate>
-            <div>
-              <label htmlFor="usn" className="block text-sm font-semibold text-[#1C1716] mb-1 text-xs sm:text-sm">University / USN</label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 shrink-0 text-[#1C1716]/60" aria-hidden="true">
-                  <path d="M3 21h18"/>
-                  <path d="M4 21V9.5"/>
-                  <path d="M20 21V9.5"/>
-                  <path d="M2.5 9.5 12 4l9.5 5.5"/>
-                  <path d="M8 21v-6.5"/>
-                  <path d="M12 21v-6.5"/>
-                  <path d="M16 21v-6.5"/>
-                </svg>
-                <input id="usn" name="usn" type="text" defaultValue="1EP24CS001" size={12} required
-                  className="font-semibold tracking-wide text-[#1C1716] bg-[#F4E6CE] rounded-md px-2 py-1 outline-none" />
+            <form onSubmit={(e) => { e.preventDefault(); setActive(5); }} className="space-y-5" noValidate>
+              <div>
+                <label className="block text-[13px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-2">University / USN</label>
+                <div className="flex items-center gap-3 rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] dark:border-[#27272a] bg-[#F5F5F0] dark:bg-[#18181b] px-4 py-3.5 focus-within:border-[#1C1917] focus-within:ring-1 focus-within:ring-[#1C1917] transition-all">
+                  <div className="w-5 h-5 rounded-full bg-[#1C1917] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                    S
+                  </div>
+                  <input id="usn" name="usn" type="text" defaultValue="1EP24CS001" required className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1917] dark:text-[#F5F5F0] text-[15px] font-medium" />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm mb-1 text-xs sm:text-sm"><span className="font-semibold text-[#1C1716]">Student Email</span> <span className="text-gray-400">(optional)</span></label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E6DFD1] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 shrink-0 text-[#1C1716]/60" aria-hidden="true">
-                  <rect x="3" y="5.5" width="18" height="13" rx="2.2"/>
-                  <path d="m3.5 7 8.5 6 8.5-6"/>
-                </svg>
-                <input id="email" name="email" type="email" placeholder="student.email@epcet.edu.in"
-                  className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1716] placeholder:text-gray-400" />
+              <div>
+                <label className="block text-[13px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-2">Student Email <span className="font-normal text-[#A8A29E]">(optional)</span></label>
+                <div className="flex items-center gap-3 rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] dark:border-[#27272a] bg-[#F5F5F0] dark:bg-[#18181b] px-4 py-3.5 focus-within:border-[#1C1917] focus-within:ring-1 focus-within:ring-[#1C1917] transition-all">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 text-[#A8A29E] shrink-0"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                  <input type="email" placeholder="student.email@epcet.edu.in" className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1917] dark:text-[#F5F5F0] text-[15px] placeholder:text-[#A8A29E]" />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label htmlFor="pw" className="block text-sm font-semibold text-[#1C1716] mb-1 text-xs sm:text-sm">Password</label>
-              <div className="flex items-center gap-3 rounded-xl border border-[#E9D2A0] bg-white px-3 py-2 sm:px-4 sm:py-2.5 focus-within:border-[#EE930D] focus-within:ring-2 focus-within:ring-[#EE930D]/25 transition-colors">
-                <input id="pw" name="password" type={showPassword ? 'text' : 'password'} defaultValue="1234" required
-                  className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1716] tracking-[0.4em]" />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="shrink-0 text-xs font-medium text-[#1C1716]/70 border border-[#E6DFD1] rounded-lg px-3 py-1.5 hover:bg-[#F3EEE3] transition-colors">
-                  {showPassword ? 'Hide' : 'Show'}
-                </button>
+              <div>
+                <label className="block text-[13px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-2">Password</label>
+                <div className="flex items-center gap-3 rounded-[12px] border border-[#E7E5E4] dark:border-[#27272a] dark:border-[#27272a] bg-[#F5F5F0] dark:bg-[#18181b] px-4 py-3.5 focus-within:border-[#1C1917] focus-within:ring-1 focus-within:ring-[#1C1917] transition-all relative">
+                  <input type={showPassword ? 'text' : 'password'} defaultValue="1234" required className="flex-1 min-w-0 outline-none bg-transparent text-[#1C1917] dark:text-[#F5F5F0] text-[15px] tracking-[0.2em]" />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-[11px] font-bold tracking-wider text-[#78716C] hover:text-[#1C1917]">
+                    {showPassword ? 'HIDE' : 'SHOW'}
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-gray-500">
-              <span className="inline-flex items-center gap-1.5">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#EE930D] shrink-0" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M12 11.2v5"/>
-                  <circle cx="12" cy="7.8" r="0.9" fill="currentColor" stroke="none"/>
-                </svg>
-                Use your college email &middot; <span className="text-[#EE930D] font-medium">OTP</span> if password fails
-              </span>
-              <a href="#" className="underline underline-offset-2 text-[#1C1716] hover:text-[#EE930D] transition-colors">Forgot password?</a>
-            </div>
+              <div className="flex items-start gap-3 bg-[#FEF3C7] dark:bg-[#78350F]/20 rounded-[12px] p-3 border border-[#FDE68A] dark:border-[#92400E]/30 mt-2 mb-6">
+                <span className="mt-0.5 text-[#D97706] dark:text-[#FBBF24] dark:text-[#FBBF24]">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+                </span>
+                <div className="flex-1 flex items-center justify-between">
+                  <div className="text-[12px] font-medium text-[#92400E] dark:text-[#FDE68A] flex flex-col">
+                    <span>Use your college email</span>
+                    <span className="opacity-80">OTP if password fails</span>
+                  </div>
+                  <a href="#" className="text-[12px] font-semibold text-[#92400E] dark:text-[#FDE68A] underline">Forgot password?</a>
+                </div>
+              </div>
 
-            <button type="submit" className="w-full bg-[#1C1716] hover:bg-black text-white font-medium text-base sm:text-lg rounded-xl py-2 sm:py-2.5 flex items-center justify-center gap-2 transition-colors mt-2">
-              Continue to Student Dashboard
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
+              <button
+                onClick={() => setActive(5)}
+                className="w-full bg-[#1C1917] hover:bg-black dark:bg-[#F5F5F0] dark:hover:bg-white dark:text-[#1C1917] text-white font-bold py-4 rounded-xl text-[15px] shadow-[0_4px_14px_0_rgba(28,25,23,0.39)] transition-all mb-4"
+              >
+                Continue to Student Dashboard &rarr;
+              </button>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Need help? &middot; <a href="#" className="underline underline-offset-2 text-[#1C1716] hover:text-[#EE930D] transition-colors">Contact HOD</a>
-          </p>
+              <div className="flex flex-col items-center gap-1.5 pt-4 text-[11px] font-medium text-[#A8A29E]">
+                <div className="flex items-center gap-2">
+                  <span>Need help?</span> &middot; <a href="#" className="text-[#78716C] hover:text-[#1C1917] underline">Contact HOD</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="flex items-center gap-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3 h-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Secured with 2FA</span> &middot; <a href="#" className="hover:text-[#1C1917]">Privacy</a> &middot; <a href="#" className="hover:text-[#1C1917]">Terms</a>
+                </div>
+              </div>
 
-          <p className="text-xs text-gray-400 mt-auto pt-3 text-center sm:text-right">
-            Secured with 2FA &middot; <a href="#" className="underline hover:text-[#1C1716] transition-colors">Privacy Policy</a> &middot; <a href="#" className="underline hover:text-[#1C1716] transition-colors">Terms</a>
-          </p>
-        </section>
-      </main>
+            </form>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
@@ -854,9 +837,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <span className="mono text-[10px] px-2 py-0.5 rounded-full bg-white border border-[#E7E5E4] text-[#78716C] hidden sm:inline-flex items-center gap-1 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" /> Live
-          </span>
+          
           <button 
             onClick={() => setActive(0)} 
             className="px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#DC2626] bg-white hover:bg-[#FEF2F2] transition-colors border border-[#FECACA] shadow-sm"
@@ -866,16 +847,16 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
         </div>
       </div>
       
-      <div className="border border-[#E7E5E4] rounded-[16px] overflow-hidden mx-4 sm:mx-8 bg-white dark:bg-[#18181b] flex flex-col flex-1 shadow-sm h-[calc(100vh-100px)]">
+      <div className="border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] overflow-hidden mx-4 sm:mx-8 bg-white dark:bg-[#18181b] flex flex-col flex-1 shadow-sm h-[calc(100vh-100px)]">
       
       {/* Header (Top Sub-navbar) */}
-      <div className="h-[56px] bg-white dark:bg-[#18181b] border-b border-[#E7E5E4] flex items-center justify-between px-4 sm:px-6 shrink-0">
+      <div className="h-[56px] bg-white dark:bg-[#18181b] border-b border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-between px-4 sm:px-6 shrink-0">
         <div className="flex items-center gap-3">
           <span className="px-2.5 py-1 rounded-full bg-[#1C1917] text-white text-[11px] font-semibold mono tracking-widest">EPCET • DEMO</span>
           <span className="hidden sm:inline text-[13px] font-medium text-[#78716C]">Academic Workspace</span>
         </div>
         <div className="flex items-center gap-4">
-          <div className="relative hidden sm:flex items-center gap-2 h-9 w-[280px] px-3 rounded-[10px] bg-[#F5F5F0] border border-[#E7E5E4] text-[13px] text-[#A8A29E] focus-within:border-[#1C1917] focus-within:bg-white dark:bg-[#18181b] transition-colors z-50">
+          <div className="relative hidden sm:flex items-center gap-2 h-9 w-[280px] px-3 rounded-[10px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] text-[13px] text-[#A8A29E] focus-within:border-[#1C1917] focus-within:bg-white dark:bg-[#18181b] transition-colors z-50">
             <span className="text-[14px]">⌕</span> 
             <input 
               value={dashSearch}
@@ -885,10 +866,10 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               placeholder="Search attendance, feedback..." 
               className="flex-1 bg-transparent outline-none truncate text-[#1C1917]" 
             />
-            <span className="ml-auto mono text-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded px-1.5 py-0.5 shadow-sm text-[#78716C]">⌘K</span>
+            <span className="ml-auto mono text-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded px-1.5 py-0.5 shadow-sm text-[#78716C]">⌘K</span>
             
             {dashFocus && dashSearch && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#18181b] rounded-[10px] border border-[#E7E5E4] shadow-lg overflow-hidden py-1 z-[100]">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#18181b] rounded-[10px] border border-[#E7E5E4] dark:border-[#27272a] shadow-lg overflow-hidden py-1 z-[100]">
                 {filteredDash.length > 0 ? filteredDash.map(item => (
                   <div 
                     key={item} 
@@ -903,7 +884,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               </div>
             )}
           </div>
-          <div className="flex items-center gap-3 pl-4 border-l border-[#E7E5E4]">
+          <div className="flex items-center gap-3 pl-4 border-l border-[#E7E5E4] dark:border-[#27272a]">
 
             <div className="relative cursor-pointer">
               <span className="text-[18px]">🔔</span>
@@ -923,7 +904,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
       <div className="flex flex-1 overflow-hidden flex-col md:flex-row">
         
         {/* Mobile Tab Bar */}
-        <div className="md:hidden w-full overflow-x-auto whitespace-nowrap border-b border-[#E7E5E4] bg-white dark:bg-[#18181b] flex items-center px-4 py-3 gap-2 shrink-0" style={{ scrollbarWidth: 'none' }}>
+        <div className="md:hidden w-full overflow-x-auto whitespace-nowrap border-b border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] flex items-center px-4 py-3 gap-2 shrink-0" style={{ scrollbarWidth: 'none' }}>
           {['Dashboard', 'Academic Attendance', 'CIE Marks', 'My Profile', 'Subject Feedback', 'Suggestion Box'].map((item) => (
             <button
               key={item}
@@ -936,7 +917,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
         </div>
 
         {/* Left Sidebar */}
-        <div className="w-[240px] border-r border-[#E7E5E4] bg-white dark:bg-[#18181b] shrink-0 hidden md:flex flex-col justify-between py-6 px-4">
+        <div className="w-[240px] border-r border-[#E7E5E4] dark:border-[#27272a] bg-white dark:bg-[#18181b] shrink-0 hidden md:flex flex-col justify-between py-6 px-4">
           <div>
             <div className="mono text-[10px] font-bold text-[#D97706] tracking-widest mb-4 px-3">ACADEMIC</div>
             <div className="space-y-1">
@@ -952,11 +933,11 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                 </button>
               ))}
             </div>
-            <div className="mt-6 pt-6 border-t border-[#E7E5E4]">
-              <div className="p-3 rounded-[14px] border border-[#E7E5E4] bg-[#F5F5F0]/50 flex items-center gap-3 shadow-sm mb-3">
+            <div className="mt-6 pt-6 border-t border-[#E7E5E4] dark:border-[#27272a]">
+              <div className="p-3 rounded-[14px] border border-[#E7E5E4] dark:border-[#27272a] bg-[#F5F5F0]/50 flex items-center gap-3 shadow-sm mb-3">
                 <div className="w-8 h-8 rounded-full bg-[#FEF3C7] text-[#D97706] flex items-center justify-center font-bold text-[13px] shrink-0">L</div>
                 <div className="overflow-hidden">
-                  <div className="text-[13px] font-semibold text-[#1C1917] truncate">loki</div>
+                  <div className="text-[13px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] truncate">loki</div>
                   <div className="mono text-[10px] text-[#A8A29E] truncate">1EP24CS001 • CSE • Synced</div>
                 </div>
               </div>
@@ -973,7 +954,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
         <div className="flex-1 bg-[#FCFCF9] overflow-y-auto p-6 lg:p-8">
           
           <div className="flex items-center justify-between mb-8">
-            <div className="inline-flex p-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] shadow-sm">
+            <div className="inline-flex p-1 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] shadow-sm">
                {['Overview', 'Attendance', 'CIE Marks', 'Profile'].map(t=>(
                  <button key={t} onClick={()=>setStudentTab(t)} className={`h-8 px-5 rounded-full text-[13px] font-medium transition-all ${studentTab===t || (t==='Overview' && studentTab==='Dashboard') || (t==='Attendance' && studentTab==='Academic Attendance') ? "bg-[#1C1917] text-white shadow" : "text-[#78716C] hover:bg-[#F5F5F0]"}`}>{t}</button>
                ))}
@@ -984,19 +965,19 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
           {(studentTab === 'Overview' || studentTab === 'Dashboard') && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 pb-12">
               {/* Welcome Card */}
-              <div className="lg:col-span-1 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm relative overflow-hidden flex flex-col">
+              <div className="lg:col-span-1 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm relative overflow-hidden flex flex-col">
                 <div className="absolute left-0 top-6 bottom-6 w-1 bg-[#D97706] rounded-r-full" />
                 <h2 className="serif text-[24px] tracking-tight mb-3 pl-3 text-[#1C1917]">Welcome back, Student 1! 👋</h2>
                 <p className="text-[13px] text-[#78716C] leading-relaxed mb-6 pl-3">Select any module to view analytics, submit feedback, or manage profile. Your data is anonymous and secure.</p>
                 <div className="mt-auto pl-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] text-[11px] text-[#57534E] font-medium">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] text-[11px] text-[#57534E] font-medium">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span> 3 of 5 tasks complete
                   </span>
                 </div>
               </div>
 
               {/* University Reg Card */}
-              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm flex flex-col">
+              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm flex flex-col">
                  <div className="mono text-[10px] text-[#DB2777] font-bold tracking-widest flex items-center gap-2 mb-4 uppercase">
                    <span className="text-[14px]">🎓</span> University Reg
                  </div>
@@ -1010,7 +991,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               </div>
 
               {/* Student ID Card */}
-              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm flex flex-col relative overflow-hidden">
+              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm flex flex-col relative overflow-hidden">
                  <div className="flex justify-between items-start mb-6">
                    <div className="flex gap-3">
                      <div className="w-10 h-10 rounded-full bg-[#FEF3C7] text-[#D97706] flex items-center justify-center font-bold text-[16px]">L</div>
@@ -1023,8 +1004,8 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                      <div className="text-[11px] text-[#A8A29E] mono">Sec</div>
                      <div className="text-[14px] font-bold text-[#78716C]">A</div>
                    </div>
-                   <div className="absolute top-4 right-4 w-12 h-12 border border-[#E7E5E4] rounded-full opacity-20 pointer-events-none" />
-                   <div className="absolute top-2 right-12 w-20 h-20 border border-[#E7E5E4] rounded-full opacity-10 pointer-events-none" />
+                   <div className="absolute top-4 right-4 w-12 h-12 border border-[#E7E5E4] dark:border-[#27272a] rounded-full opacity-20 pointer-events-none" />
+                   <div className="absolute top-2 right-12 w-20 h-20 border border-[#E7E5E4] dark:border-[#27272a] rounded-full opacity-10 pointer-events-none" />
                  </div>
 
                  <div className="flex gap-4 items-center mt-auto">
@@ -1042,7 +1023,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               </div>
 
               {/* Row 2: Academic Attendance (2 cols) & CIE Marks (1 col) */}
-              <div className="lg:col-span-2 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm">
+              <div className="lg:col-span-2 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm">
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center gap-3">
                     <span className="w-7 h-7 rounded-full bg-[#E0F2FE] flex items-center justify-center text-[#0369A1] text-[12px]">◎</span>
@@ -1052,11 +1033,11 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                     • Live Module
                   </div>
                 </div>
-                <p className="text-[13px] font-semibold text-[#1C1917] mb-1">Live subject-wise breakdown with logs</p>
+                <p className="text-[13px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-1">Live subject-wise breakdown with logs</p>
                 <p className="text-[12px] text-[#78716C] mb-6">Real-time subject-wise class attendance, date-wise logs, eligibility predictor. Works offline too.</p>
 
                 <div className="grid grid-cols-4 gap-3 mb-6">
-                  <div className="bg-[#F5F5F0] rounded-[12px] p-3 border border-[#E7E5E4]">
+                  <div className="bg-[#F5F5F0] rounded-[12px] p-3 border border-[#E7E5E4] dark:border-[#27272a]">
                     <div className="mono text-[9px] text-[#78716C] font-bold tracking-widest uppercase mb-1">Conducted</div>
                     <div className="text-[20px] font-bold text-[#1C1917]">6</div>
                   </div>
@@ -1084,10 +1065,10 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               </div>
 
               {/* Compact CIE Marks Card */}
-              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm flex flex-col cursor-pointer hover:border-[#1C1917]/20 transition-colors" onClick={()=>setStudentTab('CIE Marks')}>
+              <div className="bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm flex flex-col cursor-pointer hover:border-[#1C1917]/20 transition-colors" onClick={()=>setStudentTab('CIE Marks')}>
                 <div className="flex justify-between items-start mb-6">
                   <span className="w-8 h-8 rounded-full bg-[#FFF1F2] flex items-center justify-center text-[#BE123C] text-[14px]">📊</span>
-                  <span className="mono text-[9px] text-[#78716C] font-bold tracking-widest bg-[#F5F5F0] border border-[#E7E5E4] px-2 py-1 rounded-md uppercase">Live</span>
+                  <span className="mono text-[9px] text-[#78716C] font-bold tracking-widest bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] px-2 py-1 rounded-md uppercase">Live</span>
                 </div>
                 <h3 className="font-bold text-[15px] text-[#1C1917] mb-2">CIE & Internals</h3>
                 <p className="text-[12px] text-[#78716C] leading-relaxed mb-6">Track your continuous internal evaluation scores.</p>
@@ -1105,11 +1086,11 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
               </div>
 
               {/* Row 3: Subject Feedback */}
-              <div className="lg:col-span-3 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] p-6 shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+              <div className="lg:col-span-3 bg-white dark:bg-[#18181b] rounded-[20px] border border-[#E7E5E4] dark:border-[#27272a] p-6 shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <span className="w-12 h-12 rounded-full bg-[#F1F5F9] flex items-center justify-center text-[#475569] text-[18px] shrink-0">📝</span>
                   <div>
-                    <h3 className="font-bold text-[15px] text-[#1C1917] mb-1">Subject Feedback <span className="mono text-[9px] text-[#78716C] font-bold tracking-widest bg-[#F5F5F0] border border-[#E7E5E4] px-2 py-1 rounded-md uppercase ml-2">Batch 2024-2028</span></h3>
+                    <h3 className="font-bold text-[15px] text-[#1C1917] dark:text-[#F5F5F0] mb-1">Subject Feedback <span className="mono text-[9px] text-[#78716C] font-bold tracking-widest bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] px-2 py-1 rounded-md uppercase ml-2">Batch 2024-2028</span></h3>
                     <p className="text-[12px] text-[#78716C] leading-relaxed">Anonymous NAAC-aligned feedback. Your response matters for teaching quality.</p>
                   </div>
                 </div>
@@ -1122,7 +1103,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                   {studentTab === 'Subject Feedback' && <SubjectFeedbackFlow />}
 {(studentTab === 'Attendance' || studentTab === 'Academic Attendance') && (
             <div className="space-y-6 pb-12">
-              <div className="bg-white dark:bg-[#18181b] rounded-[16px] border border-[#E7E5E4] p-6">
+              <div className="bg-white dark:bg-[#18181b] rounded-[16px] border border-[#E7E5E4] dark:border-[#27272a] p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h3 className="serif font-semibold text-[18px]">OVERALL ATTENDANCE & PREDICTION</h3>
@@ -1132,7 +1113,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
-                  <div className="rounded-[12px] bg-[#F5F5F0] border border-[#E7E5E4] p-4">
+                  <div className="rounded-[12px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] p-4">
                     <div className="mono text-[10px] text-[#78716C] uppercase">Classes Conducted</div>
                     <div className="serif text-[28px] font-[500] mt-2">6</div>
                   </div>
@@ -1144,7 +1125,7 @@ const filteredDash = dashSearch ? dashItemsData.filter(i => i.name.toLowerCase()
                     <div className="mono text-[10px] text-[#991B1B] uppercase">Absent</div>
                     <div className="serif text-[28px] font-[500] mt-2 text-[#DC2626]">0</div>
                   </div>
-                  <div className="rounded-[12px] bg-[#F5F5F0] border border-[#E7E5E4] p-4">
+                  <div className="rounded-[12px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] p-4">
                     <div className="mono text-[10px] text-[#78716C] uppercase">Current Percentage</div>
                     <div className="serif text-[28px] font-[500] mt-2">100%</div>
                   </div>
@@ -1182,14 +1163,14 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
     : documents;
 
   return (
-    <div className="border-x border-b border-[#E7E5E4] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6 bg-white dark:bg-[#18181b]">
-      <div className="h-[56px] border-b border-[#E7E5E4] flex items-center justify-between px-4 sm:px-6 gap-3">
+    <div className="border-x border-b border-[#E7E5E4] dark:border-[#27272a] rounded-b-[16px] overflow-hidden mx-4 sm:mx-6 bg-white dark:bg-[#18181b]">
+      <div className="h-[56px] border-b border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-between px-4 sm:px-6 gap-3">
         <div className="flex items-center gap-3">
           <span className="serif text-[18px] font-[600] tracking-tight">NoteHub</span>
           <span className="mono text-[10px] px-2 py-0.5 rounded-full bg-[#FEF3C7] border border-[#FDE68A] text-[#92400E]">ENGINEERING EPCET</span>
         </div>
         <div className="hidden md:flex items-center gap-2">
-          <div className="h-9 w-[320px] lg:w-[480px] rounded-full border border-[#E7E5E4] bg-[#F5F5F0] flex items-center px-3 gap-2 text-[13px] text-[#78716C] focus-within:border-[#1C1917] focus-within:bg-white dark:bg-[#18181b] transition-colors">
+          <div className="h-9 w-[320px] lg:w-[480px] rounded-full border border-[#E7E5E4] dark:border-[#27272a] bg-[#F5F5F0] flex items-center px-3 gap-2 text-[13px] text-[#78716C] focus-within:border-[#1C1917] focus-within:bg-white dark:bg-[#18181b] transition-colors">
             ⌕ 
             <input 
               value={searchQuery} 
@@ -1200,7 +1181,7 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
               placeholder="Search for courses, quizzes, or documents" 
               className="flex-1 bg-transparent outline-none truncate text-[#1C1917]" 
             />
-            <span className="ml-auto mono text-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] rounded px-1">⌘K</span>
+            <span className="ml-auto mono text-[10px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] rounded px-1">⌘K</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -1212,14 +1193,14 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr]">
-        <div className="bg-[#F5F5F0] p-4 border-b lg:border-b-0 lg:border-r border-[#E7E5E4]">
+        <div className="bg-[#F5F5F0] p-4 border-b lg:border-b-0 lg:border-r border-[#E7E5E4] dark:border-[#27272a]">
           <button className="w-full h-10 rounded-[12px] bg-[#1C1917] text-white text-[13px] font-medium inline-flex items-center justify-center gap-2">+ New Upload</button>
           <div className="mono text-[11px] text-[#78716C] mt-2 px-1">Share notes, PPTs, lab manuals →</div>
 
           <div className="mt-6 space-y-1">
             {[{l:"Home",a:true},{l:"Library"},{l:"Recent"}].map(i=>(
-              <div key={i.l} className={`h-8 px-2.5 rounded-[10px] flex items-center gap-2 text-[13px] ${i.a ? "bg-white dark:bg-[#18181b] border border-[#E7E5E4] font-medium" : "text-[#57534E]"}`}>
-                <span className="w-5 h-5 rounded-[6px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] flex items-center justify-center text-[11px]">{i.l[0]}</span>{i.l}
+              <div key={i.l} className={`h-8 px-2.5 rounded-[10px] flex items-center gap-2 text-[13px] ${i.a ? "bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] font-medium" : "text-[#57534E]"}`}>
+                <span className="w-5 h-5 rounded-[6px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-center text-[11px]">{i.l[0]}</span>{i.l}
               </div>
             ))}
             <div className="pt-4">
@@ -1229,7 +1210,7 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
                 <div className="mt-2 space-y-1 pl-6">
                   <div className="text-[12px] text-[#57534E]">Sem 1 • 2 files</div>
                   <div className="text-[12px] text-[#57534E]">Sem 2 • 12 files</div>
-                  <button onClick={()=>setNoteView('cse5')} className={`text-[12px] px-2 py-1 rounded-full border ${noteView==='cse5' ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4]"}`}>Sem 5 • 45 files</button>
+                  <button onClick={()=>setNoteView('cse5')} className={`text-[12px] px-2 py-1 rounded-full border ${noteView==='cse5' ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] dark:border-[#27272a]"}`}>Sem 5 • 45 files</button>
                 </div>
               </div>
               <div className="mt-2 px-2 py-1.5 text-[13px] text-[#78716C]">ECE • 32 files</div>
@@ -1250,7 +1231,7 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
               <h2 className="serif text-[32px] italic leading-none">Find your materials</h2>
               <p className="text-[14px] text-[#78716C] mt-2">Search across EPCET Engineering. Everything is peer-verified.</p>
 
-              <div className="mt-6 h-[48px] rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] flex items-center px-3.5 gap-2 focus-within:border-[#1C1917]">
+              <div className="mt-6 h-[48px] rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] flex items-center px-3.5 gap-2 focus-within:border-[#1C1917]">
                 <span className="text-[#A8A29E]">⌕</span>
                 <input 
                   value={searchQuery}
@@ -1259,14 +1240,14 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
                   className="flex-1 bg-transparent outline-none text-[14px]" 
                   autoFocus
                 />
-                <span className="mono text-[10px] bg-[#F5F5F0] border border-[#E7E5E4] rounded-full px-2 py-1">Press / to focus</span>
+                <span className="mono text-[10px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] rounded-full px-2 py-1">Press / to focus</span>
               </div>
 
               <div className="mt-5 flex flex-wrap items-center gap-2">
                 {["All Sections","Academic","Lab Resources"].map(f=>(
-                  <button key={f} className={`h-8 px-3.5 rounded-full text-[12px] border ${f==="All Sections" ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] text-[#57534E]"}`}>{f}</button>
+                  <button key={f} className={`h-8 px-3.5 rounded-full text-[12px] border ${f==="All Sections" ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] dark:border-[#27272a] text-[#57534E]"}`}>{f}</button>
                 ))}
-                <div className="ml-2 h-8 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] text-[12px] flex items-center gap-1">Resource Type ▾</div>
+                <div className="ml-2 h-8 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] text-[12px] flex items-center gap-1">Resource Type ▾</div>
               </div>
 
               <div className="mt-6 mono text-[12px] text-[#A8A29E] flex items-center justify-between">
@@ -1277,14 +1258,14 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
               <div className="mt-4 space-y-2">
                 <div className="mono text-[10px] tracking-[0.12em] text-[#A8A29E]">SECTION RESOURCES</div>
                 {filteredDocs.length > 0 ? filteredDocs.map((doc, idx) => (
-                  <div key={idx} className="rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] p-4 flex items-center justify-between hover:bg-[#F5F5F0] transition-colors cursor-pointer">
+                  <div key={idx} className="rounded-[12px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] p-4 flex items-center justify-between hover:bg-[#F5F5F0] transition-colors cursor-pointer">
                     <div>
                       <div className="mono text-[10px] px-1.5 py-0.5 rounded-full bg-[#FEF3C7] border border-[#FDE68A] inline-flex">{doc.type}</div>
                       <div className="text-[16px] font-medium mt-1">{doc.title}</div>
                       <div className="mono text-[11px] text-[#A8A29E] mt-1">{doc.date} • By {doc.author} {doc.verified && "• Verified"}</div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="hidden sm:flex w-9 h-9 rounded-[10px] bg-[#F5F5F0] border border-[#E7E5E4] items-center justify-center">📄</div>
+                      <div className="hidden sm:flex w-9 h-9 rounded-[10px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] items-center justify-center">📄</div>
                       <span className="px-2.5 py-1 rounded-full bg-[#1C1917] text-white mono text-[10px]">{doc.format}</span>
                     </div>
                   </div>
@@ -1296,9 +1277,9 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
           ) : (
             <>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="h-7 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] text-[12px] inline-flex items-center">Home</span>
+                <span className="h-7 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] text-[12px] inline-flex items-center">Home</span>
                 <span className="text-[#A8A29E]">/</span>
-                <span className="h-7 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] text-[12px] inline-flex items-center">CSE</span>
+                <span className="h-7 px-3 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] text-[12px] inline-flex items-center">CSE</span>
                 <span className="text-[#A8A29E]">/</span>
                 <span className="h-7 px-3 rounded-full bg-[#1C1917] text-white text-[12px] inline-flex items-center">Sem 5</span>
               </div>
@@ -1308,21 +1289,21 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
                   <h2 className="serif text-[28px] leading-tight">Computer Science and Engineering <span className="text-[#DAA520]">CSE5</span></h2>
                   <p className="text-[14px] text-[#78716C] mt-2">5th Semester core subjects • Updated for 2026 syllabus • Lab manuals included.</p>
                 </div>
-                <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] mono text-[11px]">
+                <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] mono text-[11px]">
                   9 subjects • 45 files live
                 </div>
               </div>
 
               <div className="mt-6 flex items-center gap-2">
                 {["Popular","Recent","A-Z"].map(f=>(
-                  <button key={f} className={`h-8 px-3.5 rounded-full text-[12px] border ${f==="Popular" ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4]"}`}>{f}</button>
+                  <button key={f} className={`h-8 px-3.5 rounded-full text-[12px] border ${f==="Popular" ? "bg-[#1C1917] text-white border-[#1C1917]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] dark:border-[#27272a]"}`}>{f}</button>
                 ))}
                 <button onClick={()=>setNoteView('search')} className="ml-auto mono text-[11px] underline underline-offset-4">← Back to search</button>
               </div>
 
               <div className="mt-4 flex gap-1.5 flex-wrap">
                 {"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l=>(
-                  <div key={l} className={`w-7 h-7 rounded-[8px] border flex items-center justify-center text-[11px] font-medium ${l==="A" ? "bg-[#FEF3C7] border-[#FDE68A] text-[#92400E]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] text-[#78716C]"}`}>{l}{l==="A" ? "★" : ""}</div>
+                  <div key={l} className={`w-7 h-7 rounded-[8px] border flex items-center justify-center text-[11px] font-medium ${l==="A" ? "bg-[#FEF3C7] border-[#FDE68A] text-[#92400E]" : "bg-white dark:bg-[#18181b] border-[#E7E5E4] dark:border-[#27272a] text-[#78716C]"}`}>{l}{l==="A" ? "★" : ""}</div>
                 ))}
               </div>
 
@@ -1335,14 +1316,14 @@ function Flow5({ setActive, noteView, setNoteView }: any) {
                   { code:"20CS55", name:"SE - Software Engineering", docs:76 },
                   { code:"20CS56", name:"OS - Operating Systems", docs:102 },
                 ].map(s=>(
-                  <div key={s.code} className="rounded-[16px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] p-4 hover:border-[#1C1917] transition-colors group">
+                  <div key={s.code} className="rounded-[16px] bg-white dark:bg-[#18181b] border border-[#E7E5E4] dark:border-[#27272a] p-4 hover:border-[#1C1917] transition-colors group">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2"><span className="w-6 h-6 rounded-[8px] bg-[#F5F5F0] border border-[#E7E5E4] flex items-center justify-center text-[12px]">📁</span><span className="mono text-[11px] text-[#78716C]">{s.code}</span></div>
+                      <div className="flex items-center gap-2"><span className="w-6 h-6 rounded-[8px] bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-center text-[12px]">📁</span><span className="mono text-[11px] text-[#78716C]">{s.code}</span></div>
                       <span className="mono text-[10px] text-[#A8A29E]">{s.docs} docs</span>
                     </div>
                     <div className="serif text-[16px] font-medium leading-tight mt-3">{s.name}</div>
                     <div className="mt-3 flex items-center justify-between">
-                      <span className="px-2 py-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] mono text-[10px]">notes • PPTs • PYQs</span>
+                      <span className="px-2 py-1 rounded-full bg-[#F5F5F0] border border-[#E7E5E4] dark:border-[#27272a] mono text-[10px]">notes • PPTs • PYQs</span>
                     </div>
                     <div className="mt-3 text-[13px] font-medium group-hover:gap-2 flex items-center gap-1 transition-all">Tap to open folder →</div>
                   </div>
@@ -1373,13 +1354,13 @@ function CollegeAdminDashboard({ setActive }: any) {
           </div>
           <button 
             onClick={() => setActive(1)} 
-            className="ml-4 px-3 py-1.5 rounded-full text-[12px] font-medium text-[#57534E] bg-white/50 hover:bg-white transition-colors border border-[#E7E5E4] flex items-center gap-1 shadow-sm"
+            className="ml-4 px-3 py-1.5 rounded-full text-[12px] font-medium text-[#57534E] bg-white/50 hover:bg-white transition-colors border border-[#E7E5E4] dark:border-[#27272a] flex items-center gap-1 shadow-sm"
           >
             <span>&lt;</span> BACK
           </button>
         </div>
 
-        <div className="flex overflow-x-auto no-scrollbar items-center gap-1 bg-white/70 backdrop-blur-md border border-[#E7E5E4] rounded-full p-1 sm:p-1.5 shadow-sm max-w-[50vw] sm:max-w-none mx-2 sm:mx-0">
+        <div className="flex overflow-x-auto no-scrollbar items-center gap-1 bg-white/70 backdrop-blur-md border border-[#E7E5E4] dark:border-[#27272a] rounded-full p-1 sm:p-1.5 shadow-sm max-w-[50vw] sm:max-w-none mx-2 sm:mx-0">
           {['Admin Setup', 'Overview', 'Leaderboard', 'Activity'].map(tab => (
             <button 
               key={tab} 
@@ -1392,8 +1373,8 @@ function CollegeAdminDashboard({ setActive }: any) {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center text-[#78716C] hover:text-[#1C1917] hover:bg-white shadow-sm transition-all">🔔</button>
-          <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-[#E7E5E4] flex items-center justify-center text-[#78716C] hover:text-[#1C1917] hover:bg-white shadow-sm transition-all">👤</button>
+          <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-center text-[#78716C] hover:text-[#1C1917] hover:bg-white shadow-sm transition-all">🔔</button>
+          <button className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-[#E7E5E4] dark:border-[#27272a] flex items-center justify-center text-[#78716C] hover:text-[#1C1917] hover:bg-white shadow-sm transition-all">👤</button>
         </div>
       </div>
 
@@ -1412,7 +1393,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                   Your EPCET Demo is ready — let's set up batches so students can share honest feedback. Only 2 steps left.
                 </p>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-full px-5 py-2.5 flex items-center gap-3 shadow-sm shrink-0">
+              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-full px-5 py-2.5 flex items-center gap-3 shadow-sm shrink-0">
                 <span className="text-[11px] font-bold text-[#A8A29E] tracking-widest uppercase">SETUP CHECKLIST</span>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]"></div>
@@ -1427,18 +1408,18 @@ function CollegeAdminDashboard({ setActive }: any) {
 
             {/* Bento Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              <div className="lg:col-span-2 bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row gap-6 sm:gap-8 hover:-translate-y-0.5 transition-transform duration-300">
+              <div className="lg:col-span-2 bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row gap-6 sm:gap-8 hover:-translate-y-0.5 transition-transform duration-300">
                 <div className="w-full sm:w-32 h-32 rounded-[16px] bg-[#FAFAFA] border border-[#F5F5F0] flex flex-col items-center justify-center shrink-0">
                   <div className="text-[40px] opacity-20">🧊</div>
                 </div>
                 <div className="flex flex-col justify-center">
                   <h3 className="serif text-[22px] text-[#1C1917] mb-3">Your college is fresh — create your first batch</h3>
-                  <p className="text-[14px] text-[#78716C] leading-relaxed mb-6">Batches help organize feedback by year — e.g., <strong className="font-semibold text-[#1C1917]">2024-28 CSE</strong>. Students join via link, faculty see live insights. No CSV needed to start.</p>
+                  <p className="text-[14px] text-[#78716C] leading-relaxed mb-6">Batches help organize feedback by year — e.g., <strong className="font-semibold text-[#1C1917] dark:text-[#F5F5F0]">2024-28 CSE</strong>. Students join via link, faculty see live insights. No CSV needed to start.</p>
                   <div className="flex items-center gap-4">
                     <button className="px-6 py-3 bg-[#F59E0B] hover:bg-[#D97706] text-white text-[14px] font-bold rounded-[12px] shadow-[0_4px_14px_0_rgba(245,158,11,0.39)] transition-all flex items-center gap-2">
                       Create First Batch <span>→</span>
                     </button>
-                    <button className="px-6 py-3 bg-white border border-[#E7E5E4] hover:border-[#D97706]/30 text-[#1C1917] text-[14px] font-medium rounded-[12px] shadow-sm transition-all">
+                    <button className="px-6 py-3 bg-white border border-[#E7E5E4] dark:border-[#27272a] hover:border-[#D97706]/30 text-[#1C1917] text-[14px] font-medium rounded-[12px] shadow-sm transition-all">
                       See example
                     </button>
                     <span className="text-[12px] text-[#A8A29E] mono ml-2">Takes ~20 sec</span>
@@ -1452,7 +1433,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                   { title: "Invite Faculty", sub: "Add HODs & teachers", icon: "👥", bg: "bg-[#DBEAFE]" },
                   { title: "Import Students", sub: "CSV or share link", icon: "📤", bg: "bg-[#DCFCE7]" }
                 ].map((action, i) => (
-                  <div key={i} className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-4 flex items-center justify-between shadow-sm cursor-pointer hover:border-[#D97706]/30 hover:-translate-y-0.5 transition-all group">
+                  <div key={i} className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-4 flex items-center justify-between shadow-sm cursor-pointer hover:border-[#D97706]/30 hover:-translate-y-0.5 transition-all group">
                     <div className="flex items-center gap-4">
                       <div className={`w-12 h-12 rounded-[12px] ${action.bg} flex items-center justify-center text-[20px]`}>{action.icon}</div>
                       <div>
@@ -1467,7 +1448,7 @@ function CollegeAdminDashboard({ setActive }: any) {
             </div>
 
             {/* Global Filters */}
-            <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm">
+            <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
                 <h3 className="serif text-[22px] text-[#1C1917]">Global Filters</h3>
                 <span className="text-[11px] text-[#A8A29E] mono">Filters apply to Overview & Leaderboard • Friendly defaults</span>
@@ -1476,7 +1457,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                 <div>
                   <div className="text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-2">ACADEMIC YEAR</div>
                   <div className="relative">
-                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
+                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
                       <option>Choose year — e.g., 2024-28</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A8A29E] pointer-events-none">⌄</div>
@@ -1485,7 +1466,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                 <div>
                   <div className="text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-2">DEPARTMENT</div>
                   <div className="relative">
-                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
+                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
                       <option>Pick CSE, ECE...</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A8A29E] pointer-events-none">⌄</div>
@@ -1494,7 +1475,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                 <div>
                   <div className="text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-2">SEMESTER</div>
                   <div className="relative">
-                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
+                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
                       <option>Select sem 1-8</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A8A29E] pointer-events-none">⌄</div>
@@ -1503,7 +1484,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                 <div>
                   <div className="text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-2">FEEDBACK TYPE</div>
                   <div className="relative">
-                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
+                    <select className="w-full h-[52px] bg-transparent border border-[#E7E5E4] dark:border-[#27272a] rounded-[12px] px-4 text-[14px] text-[#78716C] appearance-none outline-none focus:border-[#D97706] transition-colors">
                       <option>Academic, Hostel...</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A8A29E] pointer-events-none">⌄</div>
@@ -1539,13 +1520,13 @@ function CollegeAdminDashboard({ setActive }: any) {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Large cards */}
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 rounded-full bg-[#DBEAFE] text-[#2563EB] flex items-center justify-center text-xl">👥</div>
                   <div className="px-3 py-1 bg-[#DCFCE7] text-[#059669] text-[11px] font-bold rounded-full mono tracking-wide">+12% this week</div>
                 </div>
                 <div>
-                  <div className="text-[48px] font-serif text-[#1C1917] leading-none mb-2">1,248</div>
+                  <div className="text-[48px] serif text-[#1C1917] leading-none mb-2">1,248</div>
                   <div className="text-[14px] text-[#78716C] font-medium mb-6">Total Students</div>
                   <div className="w-full h-1.5 bg-[#F5F5F0] rounded-full overflow-hidden">
                     <div className="w-[72%] h-full bg-[#60A5FA] rounded-full"></div>
@@ -1554,13 +1535,13 @@ function CollegeAdminDashboard({ setActive }: any) {
                 </div>
               </div>
 
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 rounded-full bg-[#DCFCE7] text-[#059669] flex items-center justify-center text-xl">🎓</div>
                   <div className="px-3 py-1 bg-[#F5F5F0] text-[#78716C] text-[11px] font-bold rounded-full mono tracking-wide">8 HODs</div>
                 </div>
                 <div>
-                  <div className="text-[48px] font-serif text-[#1C1917] leading-none mb-2">86</div>
+                  <div className="text-[48px] serif text-[#1C1917] leading-none mb-2">86</div>
                   <div className="text-[14px] text-[#78716C] font-medium mb-6">Total Faculty</div>
                   <div className="flex -space-x-2">
                     {['A','B','C','D'].map(l => (
@@ -1571,13 +1552,13 @@ function CollegeAdminDashboard({ setActive }: any) {
                 </div>
               </div>
 
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col justify-between min-h-[220px] hover:shadow-md transition-shadow">
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-12 h-12 rounded-full bg-[#FEF3C7] text-[#D97706] flex items-center justify-center text-xl">📊</div>
                   <div className="px-3 py-1 bg-[#FEF3C7] text-[#D97706] text-[11px] font-bold rounded-full mono tracking-wide">Live</div>
                 </div>
                 <div>
-                  <div className="text-[48px] font-serif text-[#1C1917] leading-none mb-2">342</div>
+                  <div className="text-[48px] serif text-[#1C1917] leading-none mb-2">342</div>
                   <div className="text-[14px] text-[#78716C] font-medium mb-4">Academic Feedbacks</div>
                   <div className="flex items-center gap-2">
                     <div className="flex text-[#F59E0B] text-[18px]">★★★★<span className="text-[#E7E5E4]">★</span></div>
@@ -1589,32 +1570,32 @@ function CollegeAdminDashboard({ setActive }: any) {
 
             {/* Bottom 4 mini cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-3">
                   <span>🔗</span> ACTIVE BATCHES
                 </div>
-                <div className="text-[24px] font-serif text-[#1C1917] mb-1">3</div>
+                <div className="text-[24px] serif text-[#1C1917] dark:text-[#F5F5F0] mb-1">3</div>
                 <div className="text-[11px] text-[#78716C] mono">2024-28 running</div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-3">
                   <span>📈</span> RESPONSE RATE
                 </div>
-                <div className="text-[24px] font-serif text-[#1C1917] mb-1">78%</div>
+                <div className="text-[24px] serif text-[#1C1917] dark:text-[#F5F5F0] mb-1">78%</div>
                 <div className="text-[11px] text-[#78716C] mono">This month</div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-3">
                   <span>⭐</span> AVG RATING
                 </div>
-                <div className="text-[24px] font-serif text-[#1C1917] mb-1">4.2</div>
+                <div className="text-[24px] serif text-[#1C1917] dark:text-[#F5F5F0] mb-1">4.2</div>
                 <div className="text-[11px] text-[#78716C] mono">★ across depts</div>
               </div>
-              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
+              <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-[#A8A29E] tracking-widest uppercase mb-3">
                   <span>🛡️</span> VERIFIED TODAY
                 </div>
-                <div className="text-[24px] font-serif text-[#1C1917] mb-1">12</div>
+                <div className="text-[24px] serif text-[#1C1917] dark:text-[#F5F5F0] mb-1">12</div>
                 <div className="text-[11px] text-[#78716C] mono">New logs</div>
               </div>
             </div>
@@ -1623,21 +1604,21 @@ function CollegeAdminDashboard({ setActive }: any) {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               
               {/* Real-time Insights */}
-              <div className="lg:col-span-3 bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col">
+              <div className="lg:col-span-3 bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 shadow-sm flex flex-col">
                 <div className="flex justify-between items-center mb-6">
                   <h3 className="serif text-[20px] text-[#1C1917] font-semibold">Real-time Insights</h3>
-                  <button className="flex items-center gap-2 px-4 py-2 border border-[#E7E5E4] rounded-full text-[12px] font-medium text-[#78716C] hover:bg-[#FAFAFA] hover:text-[#1C1917] transition-all">
+                  <button className="flex items-center gap-2 px-4 py-2 border border-[#E7E5E4] dark:border-[#27272a] rounded-full text-[12px] font-medium text-[#78716C] hover:bg-[#FAFAFA] hover:text-[#1C1917] transition-all">
                     <span>🔗</span> Copy share link
                   </button>
                 </div>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                  <div className="border border-[#E7E5E4] rounded-[16px] p-5 flex flex-col gap-3 bg-[#FAFAFA]/50">
+                  <div className="border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 flex flex-col gap-3 bg-[#FAFAFA]/50">
                     <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#059669] tracking-widest uppercase">
                       <span>🏆</span> TOP PERFORMER
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full border border-[#E7E5E4] bg-white flex items-center justify-center text-[12px] font-bold text-[#1C1917]">AS</div>
+                      <div className="w-10 h-10 rounded-full border border-[#E7E5E4] dark:border-[#27272a] bg-white flex items-center justify-center text-[12px] font-bold text-[#1C1917]">AS</div>
                       <div>
                         <div className="font-semibold text-[14px] text-[#1C1917]">Ananya S. — CSE</div>
                         <div className="flex items-center gap-1">
@@ -1671,7 +1652,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                   </div>
                 </div>
 
-                <div className="border border-[#E7E5E4] border-dashed rounded-[16px] p-6 flex flex-col items-center justify-center text-center gap-4 bg-[#FAFAFA]">
+                <div className="border border-[#E7E5E4] dark:border-[#27272a] border-dashed rounded-[16px] p-6 flex flex-col items-center justify-center text-center gap-4 bg-[#FAFAFA]">
                   <p className="text-[12px] text-[#78716C] mono max-w-[400px]">
                     No feedback yet for MECH — share link with students to start collecting honest notes
                   </p>
@@ -1702,7 +1683,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                 </ul>
                 
                 <div className="mt-auto relative z-10">
-                  <button className="w-full py-4 bg-[#F59E0B] hover:bg-[#D97706] text-[#1C1917] text-[15px] font-bold rounded-[14px] shadow-[0_4px_20px_0_rgba(245,158,11,0.25)] transition-all flex items-center justify-center gap-2">
+                  <button className="w-full py-4 bg-[#F59E0B] hover:bg-[#D97706] text-[#1C1917] dark:text-[#F5F5F0] text-[15px] font-bold rounded-[14px] shadow-[0_4px_20px_0_rgba(245,158,11,0.25)] transition-all flex items-center justify-center gap-2">
                     ✨ Generate report
                   </button>
                   <div className="text-[10px] text-[#A8A29E] mono text-center mt-4 uppercase tracking-widest">
@@ -1731,14 +1712,14 @@ function CollegeAdminDashboard({ setActive }: any) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Left Chart */}
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[24px] p-10 flex flex-col items-center justify-center text-center shadow-sm h-[400px]">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[24px] p-10 flex flex-col items-center justify-center text-center shadow-sm h-[400px]">
                 <div className="relative w-40 h-40 mb-8">
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#F5F5F0" strokeWidth="6" />
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#F59E0B" strokeWidth="6" strokeDasharray="283" strokeDashoffset="186" strokeLinecap="round" className="animate-[spin_1.5s_ease-out_reverse]" />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-[32px] font-serif text-[#1C1917] leading-none">34%</span>
+                    <span className="text-[32px] serif text-[#1C1917] leading-none">34%</span>
                     <span className="text-[9px] font-bold text-[#A8A29E] tracking-widest uppercase mt-1">PARTICIPATED</span>
                   </div>
                 </div>
@@ -1755,7 +1736,7 @@ function CollegeAdminDashboard({ setActive }: any) {
               </div>
 
               {/* Right Chart */}
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 flex flex-col shadow-sm h-[400px]">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-5 sm:p-8 flex flex-col shadow-sm h-[400px]">
                 <div className="flex justify-between items-center mb-10">
                   <h3 className="serif text-[18px] text-[#1C1917] font-semibold">Volume distribution</h3>
                   <div className="flex items-center gap-1.5 text-[11px] text-[#A8A29E] font-medium">
@@ -1763,7 +1744,7 @@ function CollegeAdminDashboard({ setActive }: any) {
                   </div>
                 </div>
                 
-                <div className="flex-1 border border-[#E7E5E4] border-dashed rounded-[16px] bg-[#FAFAFA] flex flex-col items-center justify-center p-6 relative">
+                <div className="flex-1 border border-[#E7E5E4] dark:border-[#27272a] border-dashed rounded-[16px] bg-[#FAFAFA] flex flex-col items-center justify-center p-6 relative">
                   <svg width="100" height="40" viewBox="0 0 100 40" fill="none" className="opacity-20 mb-4">
                     <path d="M0 20 Q 25 5, 50 20 T 100 20" stroke="#1C1917" strokeWidth="2" strokeDasharray="4 4" />
                     <circle cx="25" cy="12.5" r="3" fill="#1C1917" />
@@ -1783,7 +1764,7 @@ function CollegeAdminDashboard({ setActive }: any) {
 
             {/* Bottom Footer Elements */}
             <div className="mt-4 flex flex-col gap-4">
-              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-full px-6 py-3 flex justify-between items-center shadow-sm">
+              <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-full px-6 py-3 flex justify-between items-center shadow-sm">
                 <div className="flex items-center gap-2 text-[12px] text-[#78716C] mono">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span> Database certified • Last audit 0ms ago • Encrypted at rest
                 </div>
@@ -1794,16 +1775,16 @@ function CollegeAdminDashboard({ setActive }: any) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
-                  <div className="serif text-[15px] font-semibold text-[#1C1917] mb-1">Imperfect spacing</div>
+                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
+                  <div className="serif text-[15px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-1">Imperfect spacing</div>
                   <div className="text-[12px] text-[#78716C] leading-relaxed">24px, 32px, 40px — not uniform 16px. Feels hand-placed.</div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
-                  <div className="serif text-[15px] font-semibold text-[#1C1917] mb-1">No all-caps shouting</div>
+                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
+                  <div className="serif text-[15px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-1">No all-caps shouting</div>
                   <div className="text-[12px] text-[#78716C] leading-relaxed">Sentence case, Newsreader titles, mono 10-11px labels. Calm.</div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] rounded-[16px] p-5 shadow-sm">
-                  <div className="serif text-[15px] font-semibold text-[#1C1917] mb-1">Hover lift 2px</div>
+                <div className="bg-white/80 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[16px] p-5 shadow-sm">
+                  <div className="serif text-[15px] font-semibold text-[#1C1917] dark:text-[#F5F5F0] dark:text-[#F5F5F0] mb-1">Hover lift 2px</div>
                   <div className="text-[12px] text-[#78716C] leading-relaxed">Soft shadow, active scale 0.98, focus ring amber 2px, 200ms.</div>
                 </div>
               </div>
@@ -1830,7 +1811,7 @@ function CollegeAdminDashboard({ setActive }: any) {
               </p>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] rounded-[20px] sm:rounded-[24px] p-1 sm:p-8 shadow-sm overflow-x-auto">
+            <div className="bg-white/90 backdrop-blur-sm border border-[#E7E5E4] dark:border-[#27272a] rounded-[20px] sm:rounded-[24px] p-1 sm:p-8 shadow-sm overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
                   <tr>
