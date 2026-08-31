@@ -1,4 +1,7 @@
-export default { darkMode: 'class', content: ["./index.html","./src/**/*.{js,ts,jsx,tsx}"], theme: { extend: { 
+﻿const fs = require('fs');
+let config = fs.readFileSync('tailwind.config.js', 'utf8');
+
+const newExtend = `{ 
       screens: { 'short': { 'raw': '(max-height: 820px)' } },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
@@ -14,4 +17,8 @@ export default { darkMode: 'class', content: ["./index.html","./src/**/*.{js,ts,
           '100%': { opacity: '1', transform: 'translateY(0)' },
         }
       }
-    } }, plugins: [] }
+    }`;
+
+config = config.replace(`{ screens: { 'short': { 'raw': '(max-height: 820px)' } } }`, newExtend);
+fs.writeFileSync('tailwind.config.js', config, 'utf8');
+console.log("Tailwind config updated with animations.");
