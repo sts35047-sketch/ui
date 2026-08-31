@@ -809,14 +809,22 @@ function StudentLoginFlow({ setActive }: { setActive: (val: number) => void }) {
 }
 
 function Flow4({ setActive }: any) {
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data === 'LOGOUT') setActive(0);
+    };
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [setActive]);
+
   return (
     <div className="fixed inset-0 w-full h-full z-[100] bg-black">
       <iframe src="/atelier.html" className="w-full h-full border-0" />
       <button 
         onClick={() => setActive(0)}
-        className="absolute top-4 right-4 z-[200] px-4 py-2 rounded-full text-[12px] font-semibold text-[#DC2626] bg-white hover:bg-[#FEF2F2] transition-colors border border-[#FECACA] shadow-sm"
+        className="absolute top-6 left-6 z-[200] mono text-[12px] text-[#78716C] hover:text-[#1C1917] bg-white/80 backdrop-blur px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 shadow-sm border border-[#E7E5E4]"
       >
-        Logout
+        &lt; Back to roles
       </button>
     </div>
   );
