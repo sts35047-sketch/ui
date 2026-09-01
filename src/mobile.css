@@ -253,7 +253,7 @@
 
 .bottom-nav {
   position: fixed; bottom:0; left:50%; transform:translateX(-50%);
-  width:100%; max-width:430px; height:72px; display:grid; grid-template-columns:repeat(4,1fr);
+  width:100%; max-width:430px; height:72px; display:grid; grid-template-columns:repeat(5,1fr);
   background:rgba(255,255,255,.97); border-top:1px solid #e6e2dc; z-index:20;
   padding-bottom:7px;
 }
