@@ -883,7 +883,7 @@ function StudentLoginFlow({ setActive }: any) {
 
 function Flow4({ setActive }: any) {
   const [studentTab, setStudentTab] = useState('Overview');
-  const [dashSearch, setDashSearch] = useState('••••••••');
+  const [dashSearch, setDashSearch] = useState('');
   const [dashFocus, setDashFocus] = useState(false);
   
 const dashItemsData = [
