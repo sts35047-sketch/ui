@@ -1,6 +1,7 @@
-import { Book, Check, ChevronRight, GraduationCap, Hand, BookOpen, Settings, LogOut, LineChart, Home as HomeIcon, CheckCircle2, FileText, Menu as MenuIcon, ArrowLeft, MoreVertical, User, MessageSquare, Mail, Target, BarChart2 } from "lucide-react";
+import { Home as HomeIcon, CheckCircle2, FileText, Menu as MenuIcon, ArrowLeft, MoreVertical, User, MessageSquare, Mail, Target, BarChart2 } from "lucide-react";
 import React, { useState } from "react";
 import "./mobile.css";
+import logoUrl from "./logo.png";
 
 const subjects = [
   { code: "21CS51", name: "Database Systems", faculty: "Teacher 1", marks: 49, percent: 98 },
@@ -23,7 +24,7 @@ function Icon({ children }) {
 function Header({ title, onBack, action }) {
   return (
     <header className="m-header">
-      <button className="icon-btn" onClick={onBack} aria-label="Back"><ChevronLeft size={14} /></button>
+      <button className="icon-btn" onClick={onBack} aria-label="Back">‹</button>
       <strong>{title}</strong>
       {action || <span className="header-spacer" />}
     </header>
@@ -35,8 +36,7 @@ function BottomNav({ page, setPage }) {
     ["home", "Home", <HomeIcon size={20} />],
     ["attendance", "Attendance", <CheckCircle2 size={20} />],
     ["marks", "CIE Marks", <FileText size={20} />],
-    ["feedback", "Feedback", <Book size={20} />],
-    ["profile", "Profile", <User size={20} />],
+    ["menu", "Menu", <MenuIcon size={20} />],
   ];
   return (
     <nav className="bottom-nav">
@@ -58,7 +58,7 @@ function Home({ setPage }) {
   return (
     <main className="m-content">
       <div className="greeting">
-        <span>Good morning, Karunya <Hand size={20} /></span>
+        <span>Good morning, Karunya 👋</span>
         <h1>Your academic workspace</h1>
       </div>
 
@@ -70,14 +70,14 @@ function Home({ setPage }) {
             <p>You need <b>3 more classes</b><br />to reach 75% in DBMS.</p>
           </div>
         </div>
-        <button onClick={() => setPage("attendance")} className="chevron"><ChevronRight size={14} /></button>
+        <button onClick={() => setPage("attendance")} className="chevron">›</button>
       </section>
 
       <h2 className="section-title">Quick Access</h2>
       <div className="quick-grid">
-        <button onClick={() => setPage("attendance")}><span><BarChart2 size={20} /></span>Attendance</button>
-        <button onClick={() => setPage("marks")}><span><LineChart size={20} /></span>CIE Marks</button>
-        <button onClick={() => setPage("feedback")}><span><Book size={20} /></span>Feedback</button>
+        <button onClick={() => setPage("attendance")}><span>📊</span>Attendance</button>
+        <button onClick={() => setPage("marks")}><span>📈</span>CIE Marks</button>
+        <button onClick={() => setPage("feedback")}><span>📚</span>Feedback</button>
         <button onClick={() => setPage("profile")}><User size={24} className="mb-2 text-[#57534E]" />Profile</button>
       </div>
 
@@ -90,7 +90,7 @@ function Home({ setPage }) {
       </div>
 
       <div className="eligible-card">
-        <span><Check size={20} /></span>
+        <span>✓</span>
         <div><b>Eligible Status</b><small>You are eligible for all subjects.</small></div>
       </div>
     </main>
@@ -105,7 +105,7 @@ function Attendance() {
         <button>Subject-wise</button>
       </div>
 
-      <div className="status-pill"><Check size={20} /> Eligible (75% required)</div>
+      <div className="status-pill">✓ Eligible (75% required)</div>
 
       <div className="metric-grid attendance-metrics">
         <div className="metric"><small>CONDUCTED</small><b>6</b></div>
@@ -166,7 +166,7 @@ function Feedback({ setPage }) {
   return (
     <main className="m-content">
       <section className="feedback-head">
-        <span><Book size={20} /></span>
+        <span>📚</span>
         <div><small>Batch 2024–2028</small><h2>Sem 1</h2></div>
       </section>
 
@@ -196,7 +196,7 @@ function Subjects({ setPage }) {
       <div className="subject-select-list">
         {subjects.map(s => (
           <button key={s.code} onClick={() => setPage("submit")}>
-            <span className="book"><Book size={20} /></span>
+            <span className="book">📘</span>
             <div><small>{s.code}</small><b>{s.name}</b><small>Faculty: {s.faculty}</small></div>
             <span className="radio" />
           </button>
@@ -212,7 +212,7 @@ function SubmitFeedback() {
   return (
     <main className="m-content">
       <section className="feedback-head">
-        <span><Book size={20} /></span>
+        <span>📘</span>
         <div><b>Database Systems</b><small>21CS51 • Teacher 1</small></div>
       </section>
       <p className="step-label">Step 3 of 3</p>
@@ -236,11 +236,11 @@ function SubmitFeedback() {
   );
 }
 
-function Profile() {
+export function Profile() {
   return (
     <main className="m-content">
       <section className="profile-card">
-        <div className="avatar-large"><User size={20} />🏻<GraduationCap size={20} /></div>
+        <div className="avatar-large">👨🏻🎓</div>
         <h1>Karunya KP</h1>
         <p>1EP24CS001</p>
         <small>Computer Science & Engineering</small>
@@ -253,6 +253,7 @@ function Profile() {
     </main>
   );
 }
+
 
 function Menu({ setPage, setActive }) {
   return (
@@ -318,8 +319,8 @@ export default function StudentMobileApp({ setActive }) {
 
         {isHome ? (
           <header className="m-home-header">
-            <div className="brand"><span className="brand-mark"><GraduationCap size={20} /></span><b>EduFeedback Pro</b></div>
-            <div className="header-actions"><button onClick={() => setActive(0)}><ChevronLeft size={14} /></button><button className="mini-avatar">K</button></div>
+            <div className="brand"><img src={logoUrl} alt="Logo" style={{width:'28px',height:'28px',objectFit:'contain',borderRadius:'6px'}} /><b>EduFeedback Pro</b></div>
+            <div className="header-actions"><button onClick={() => setActive(0)}>‹</button><button className="mini-avatar">K</button></div>
           </header>
         ) : (
           <Header title={titles[page]} onBack={goBack} action={page === "attendance" || page === "marks" ? <button className="icon-btn">⌕</button> : null} />
